@@ -10,6 +10,18 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
     file_path = ft.TextField(value=" ", text_align=ft.TextAlign.RIGHT, width=500 )  # fill all the space
+    
+    indicator = ft.Container(
+        width=150,
+        height=150,
+        bgcolor="blue",
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    def animate_indicator(e):
+        indicator.opacity = 0 if indicator.opacity == 1 else 1
+        indicator.update()
 
     class ExampleHandler(FileSystemEventHandler):
         def on_created(self, event): # when file is created
@@ -19,9 +31,9 @@ def main(page: ft.Page):
             print("send result to FRONT END")
             file_path.value = event.src_path
             page.update()
+
     observer = Observer()
     event_handler = ExampleHandler() # create event handler
-
 
     def system_file_changes():
         # set observer to use created handler in directory
@@ -51,7 +63,8 @@ def main(page: ft.Page):
                 ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
                 txt_number,
                 ft.IconButton(ft.icons.ADD, on_click=plus_click),
-                file_path
+                file_path,
+                indicator
             ],
             alignment=ft.MainAxisAlignment.CENTER,
         )
