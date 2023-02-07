@@ -30,6 +30,7 @@ def main(page: ft.Page):
             print("process detected file")
             print("send result to FRONT END")
             file_path.value = event.src_path
+            animate_indicator(event)
             page.update()
 
     observer = Observer()
