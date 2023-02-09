@@ -1,10 +1,18 @@
 import flet as ft
 import time 
 import os
+import stat
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import pandas as pd
 import numpy as np
+from parse_html import parse_report
+
+
+# git add .
+# git commit -m "commit here"
+# git push -u origin master
+
 
 strength_threshold = 600 #in newtons
 elongation_threshold = 30 # in percent
@@ -46,39 +54,13 @@ def main(page: ft.Page):
         def on_created(self, event): # when file is created
             # do something, eg. call your function to process the image
             print ("Got event for file %s" % event.src_path)
-
-            test_data = pd.read_csv(event.src_path).to_numpy()
-            sample_strength = np.max(test_data[:,0])
-            sample_elongation = np.max(test_data[:,1])
-
-            if sample_strength < strength_threshold:
-                # set indicator property color to red
-                # set indicator text to low strength
-                strength_indicator.bgcolor = "Red"
-                strength_indicator.content = ft.Text("WARNING: LOW STRENGTH", size=12)
-                strength_indicator.update()
-                file_path.value = event.src_path
-                page.update()
-            else:
-                strength_indicator.bgcolor = "Green"
-                strength_indicator.content = ft.Text("ACCEPTABLE STRENGTH", size=12)
-                strength_indicator.update()
-                file_path.value = event.src_path
-                page.update()
-
-            if sample_elongation < elongation_threshold:
-                elongation_indicator.bgcolor = "Red"
-                elongation_indicator.content = ft.Text("WARNING: LOW ELONGATION", size=12)
-                elongation_indicator.update()
-                file_path.value = event.src_path
-                page.update()
-            else:
-                elongation_indicator.bgcolor = "Green"
-                elongation_indicator.content = ft.Text("ACCEPTABLE ENLONGATION", size=12)
-                elongation_indicator.update()
-                file_path.value = event.src_path
-                page.update()
-
+            os.chmod(event.src_path, stat.S_IRWXO)
+            report = open(event.src_path, 'r')
+            sample_header, sample_data = parse_report(report)
+            file_path.value = str(sample_header)
+            print(sample_header)
+            print(sample_data)
+            page.update()
 
 
     observer = Observer()
@@ -133,3 +115,4 @@ def main(page: ft.Page):
     system_file_changes()
 
 ft.app(target=main)
+

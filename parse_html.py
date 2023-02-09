@@ -2,9 +2,12 @@ import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
 
-report = open("02092023-01.html")
 
 def parse_report(report):
+    """
+    parse_report takes a html file as its input 
+    and returns first a dict w
+    """
     #########################################################
     ### Processing HTML for force and displacement data
     # read the file in
@@ -45,11 +48,6 @@ def parse_report(report):
     
     return header_dict, force_disp_dataframe
 
-print(parse_report(report))
 
 
 
-
-# git add .
-# git commit -m "commit here"
-# git push -u origin master
