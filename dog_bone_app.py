@@ -21,15 +21,7 @@ def main(page: ft.Page):
     page.title = "Dog Bone Application"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-    file_path = ft.TextField(value=" ", text_align=ft.TextAlign.RIGHT, width=500, height=50)  # fill all the space
-    selected_file_text = ft.Text(value="Selected File: ", size=18)
-
-    strength_threshold_text = ft.Text(value="Peak Strength Minimum: "+str(strength_threshold)+" N", size=18)
-    elongation_threshold_text = ft.Text(value="Elongation Minimum: "+str(elongation_threshold)+" %", size=18)
-
-    sample_strength_text = ft.Text(value="Sample Strength: ", size=18)
-    sample_elongation_text = ft.Text(value="Sample Elongation: ", size=18)
-
+    file_path = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=750, height=50, text_size=12)  # fill all the space
     
     strength_indicator = ft.Container(
         content=ft.Text(""),
@@ -54,12 +46,18 @@ def main(page: ft.Page):
         def on_created(self, event): # when file is created
             # do something, eg. call your function to process the image
             print ("Got event for file %s" % event.src_path)
+
+            # give the correct permissions to open the file.
             os.chmod(event.src_path, stat.S_IRWXO)
+
+            # open the file
             report = open(event.src_path, 'r')
+            
+            # parse the file
             sample_header, sample_data = parse_report(report)
+            
             file_path.value = str(sample_header)
-            print(sample_header)
-            print(sample_data)
+
             page.update()
 
 
@@ -81,34 +79,36 @@ def main(page: ft.Page):
 
 
     page.add(
+        # file row
         ft.Row(
             [
-                strength_threshold_text,
-                elongation_threshold_text
+                file_path,
             ],
-            alignment=ft.MainAxisAlignment.CENTER,
-        ),
-    
-        ft.Row(
-            [
-                selected_file_text, file_path,
-
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.START,
         ),
 
+        # header row
         ft.Row(
             [
-               sample_strength_text, strength_indicator,
+                strength_indicator, elongation_indicator
             ],
-            alignment=ft.MainAxisAlignment.CENTER
+            alignment=ft.MainAxisAlignment.START
         ),
 
+        # measurements row
         ft.Row(
             [
-               sample_elongation_text, elongation_indicator,
+                strength_indicator, elongation_indicator
             ],
-            alignment=ft.MainAxisAlignment.CENTER
+            alignment=ft.MainAxisAlignment.START
+        ),
+
+        # properties row
+        ft.Row(
+            [
+                strength_indicator, elongation_indicator,
+            ],
+            alignment=ft.MainAxisAlignment.START
         )
     )
 
