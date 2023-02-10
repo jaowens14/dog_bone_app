@@ -13,33 +13,102 @@ from parse_html import parse_report
 # git commit -m "commit here"
 # git push -u origin master
 
+# example of sample header:
+# {'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'}
 
-strength_threshold = 600 #in newtons
-elongation_threshold = 30 # in percent
+thresholds = {
+    'm95' : {"tensile_strength" : 75, "elongation_%" : 151},
+    'm88' : {"tensile_strength" : 76, "elongation_%" : 152},
+    'pa12' : {"tensile_strength" : 77, "elongation_%" : 153},
+    'pa11' : {"tensile_strength" : 78, "elongation_%" : 154},
+}
+
 
 def main(page: ft.Page):
     page.title = "Dog Bone Application"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-    file_path = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=750, height=50, text_size=12)  # fill all the space
+    file_path = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=1000, height=50, text_size=12)  # fill all the space
     
-    strength_indicator = ft.Container(
-        content=ft.Text(""),
-        width=150,
-        height=50,
-        bgcolor="Blue",
+    strength_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
 
-    elongation_indicator = ft.Container(
-        content=ft.Text(""),
-        width=150,
-        height=50,
-        bgcolor="Blue",
+    build_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
+
+    material_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    dog_bone_number_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    length_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    width_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    thickness_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+    elongation_container = ft.Container(
+        content=ft.Text("TEST TEST", size=18),
+        alignment=ft.alignment.center,
+        width=200,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
 
 
     class ExampleHandler(FileSystemEventHandler):
@@ -55,8 +124,13 @@ def main(page: ft.Page):
             
             # parse the file
             sample_header, sample_data = parse_report(report)
-            
-            file_path.value = str(sample_header)
+            print(sample_header)
+            print(sample_header['BUILD NUMBER'])
+            build_container.content = ft.Column(
+                [ft.Text(sample_header['BUILD NUMBER']), ft.Text(sample_header['BUILD NUMBER'])]
+            )
+
+            file_path.value = "Selected file: "+str(event.src_path)
 
             page.update()
 
@@ -90,7 +164,9 @@ def main(page: ft.Page):
         # header row
         ft.Row(
             [
-                strength_indicator, elongation_indicator
+                # {'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'}
+
+                build_container, material_container, dog_bone_number_container
             ],
             alignment=ft.MainAxisAlignment.START
         ),
@@ -98,7 +174,7 @@ def main(page: ft.Page):
         # measurements row
         ft.Row(
             [
-                strength_indicator, elongation_indicator
+                length_container, width_container, thickness_container
             ],
             alignment=ft.MainAxisAlignment.START
         ),
@@ -106,7 +182,7 @@ def main(page: ft.Page):
         # properties row
         ft.Row(
             [
-                strength_indicator, elongation_indicator,
+                strength_container, elongation_container,
             ],
             alignment=ft.MainAxisAlignment.START
         )
