@@ -119,11 +119,14 @@ def main(page: ft.Page):
             # give the correct permissions to open the file.
             os.chmod(event.src_path, stat.S_IRWXO)
 
+        
+
             # open the file
             report = open(event.src_path, 'r')
             
             # parse the file
             sample_header, sample_data = parse_report(report)
+            
             print(sample_header)
             print(sample_header['BUILD NUMBER'])
             build_container.content = ft.Column(
