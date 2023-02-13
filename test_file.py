@@ -7,3 +7,6 @@ thresholds = {
 
 print(thresholds)
 print(thresholds["m88"]['tensile_strength'])
+
+header = list({'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'})
+

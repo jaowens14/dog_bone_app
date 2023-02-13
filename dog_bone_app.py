@@ -31,9 +31,9 @@ def main(page: ft.Page):
     file_path = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=1000, height=50, text_size=12)  # fill all the space
     
     strength_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("MAX FORCE : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
+        width=275,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -41,39 +41,39 @@ def main(page: ft.Page):
     )
 
     build_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("BUILD : ------", size=18),
         alignment=ft.alignment.center,
-        width=200,
-        height=100,
+        width=275,
+        height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
 
     material_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("MATERIAL : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
-        height=100,
+        width=275,
+        height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
 
     dog_bone_number_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("DOG BONE NUMBER : --", size=18),
         alignment=ft.alignment.center,
-        width=200,
-        height=100,
+        width=275,
+        height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
 
     length_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("LENGTH : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
+        width=275,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -81,9 +81,9 @@ def main(page: ft.Page):
     )
 
     width_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("WIDTH : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
+        width=275,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -91,18 +91,18 @@ def main(page: ft.Page):
     )
 
     thickness_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("THICKNESS : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
+        width=275,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
     elongation_container = ft.Container(
-        content=ft.Text("TEST TEST", size=18),
+        content=ft.Text("MAX TRAVEL : ----", size=18),
         alignment=ft.alignment.center,
-        width=200,
+        width=275,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -114,12 +114,11 @@ def main(page: ft.Page):
     class ExampleHandler(FileSystemEventHandler):
         def on_created(self, event): # when file is created
             # do something, eg. call your function to process the image
+            time.sleep(1)
             print ("Got event for file %s" % event.src_path)
 
             # give the correct permissions to open the file.
             os.chmod(event.src_path, stat.S_IRWXO)
-
-        
 
             # open the file
             report = open(event.src_path, 'r')
@@ -129,9 +128,23 @@ def main(page: ft.Page):
             
             print(sample_header)
             print(sample_header['BUILD NUMBER'])
-            build_container.content = ft.Column(
-                [ft.Text(sample_header['BUILD NUMBER']), ft.Text(sample_header['BUILD NUMBER'])]
-            )
+            # {'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'}
+
+            build_container.content = ft.Text("BUILD : "+sample_header['BUILD NUMBER'], text_align=ft.alignment.center, size=18)
+            material_container.content = ft.Text("MATERIAL : "+sample_header['MATERIAL'], text_align=ft.alignment.center, size=18)
+            dog_bone_number_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
+            length_container.content = ft.Text("LENGTH : "+sample_header['LENGTH'], text_align=ft.alignment.center, size=18)
+            width_container.content = ft.Text("WIDTH : "+sample_header['WIDTH'], text_align=ft.alignment.center, size=18)
+            thickness_container.content = ft.Text("THICKNESS : "+sample_header['THICKNESS'], text_align=ft.alignment.center, size=18)
+            max_travel = sample_data
+            sample_data['Load [N]'] = -sample_data['Load [N]']
+            print(sample_data["Load [N]"])
+            print(sample_data['Load [N]'].max())
+            print(sample_data['Travel [mm]'].max())
+
+            elongation_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
+            strength_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
+
 
             file_path.value = "Selected file: "+str(event.src_path)
 
