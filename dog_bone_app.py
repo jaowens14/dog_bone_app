@@ -137,7 +137,7 @@ def main(page: ft.Page):
             width_container.content = ft.Text("WIDTH : "+sample_header['WIDTH'], text_align=ft.alignment.center, size=18)
             thickness_container.content = ft.Text("THICKNESS : "+sample_header['THICKNESS'], text_align=ft.alignment.center, size=18)
             max_travel = sample_data
-            sample_data['Load [N]'] = -sample_data['Load [N]']
+            sample_data['Load [N]'] = sample_data['Load [N]']
             print(sample_data["Load [N]"])
             print(sample_data['Load [N]'].max())
             print(sample_data['Travel [mm]'].max())
