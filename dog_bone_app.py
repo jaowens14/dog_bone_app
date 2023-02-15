@@ -28,7 +28,7 @@ def main(page: ft.Page):
     page.title = "Dog Bone Application"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-    file_path_field = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=1000, height=50, text_size=12)  # fill all the space
+    file_path_field = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=800, height=50, text_size=12)  # fill all the space
     
     strength_container = ft.Container(
         content=ft.Text("MAXIMUM LOAD [N] : ----", size=18),
@@ -160,6 +160,9 @@ def main(page: ft.Page):
     class ExampleHandler(FileSystemEventHandler):
         def on_created(self, event): # when file is created
             try:
+                file_path_field.value = ""
+                file_path_field.bgcolor = ft.colors.WHITE
+                page.update()
                 # do something, eg. call your function to process the image
                 print ("Got event for file %s" % event.src_path)
                 process_file(event.src_path)
@@ -179,6 +182,9 @@ def main(page: ft.Page):
 
     def system_file_changes():
         # set observer to use created handler in directory
+        file_path_field.value = ""
+        file_path_field.bgcolor = ft.colors.WHITE
+        page.update()
         observer.schedule(event_handler, path='.')
         observer.start()
         # sleep until keyboard interrupt, then stop + rejoin the observer
@@ -192,6 +198,9 @@ def main(page: ft.Page):
 
     # reset and file picker
     def on_dialog_result(e: ft.FilePickerResultEvent):
+        file_path_field.value = ""
+        file_path_field.bgcolor = ft.colors.WHITE
+        page.update()
         print("Selected files:", e.files)
         file_name = e.files[0].name
         file_path = e.files[0].path
@@ -210,11 +219,12 @@ def main(page: ft.Page):
     file_picker = ft.FilePicker(on_result=on_dialog_result)
     page.overlay.append(file_picker)
     page.update()
+    
     page.add(
         # file row
         ft.Row(
             [
-                file_path_field, ft.OutlinedButton(icon=ft.icons.FILE_OPEN, on_click=lambda _: file_picker.pick_files(allow_multiple=False))
+                file_path_field, ft.OutlinedButton("SELECT REPORT", on_click=lambda _: file_picker.pick_files(allow_multiple=False))
 
             ],
             alignment=ft.MainAxisAlignment.START,
