@@ -456,6 +456,50 @@
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\diagram\\__init__.py',
    'PYMODULE'),
+  ('pyparsing',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\__init__.py',
+   'PYMODULE'),
+  ('pyparsing.common',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\common.py',
+   'PYMODULE'),
+  ('pyparsing.testing',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\testing.py',
+   'PYMODULE'),
+  ('pyparsing.unicode',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\unicode.py',
+   'PYMODULE'),
+  ('pyparsing.helpers',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\helpers.py',
+   'PYMODULE'),
+  ('pyparsing.results',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\results.py',
+   'PYMODULE'),
+  ('pyparsing.core',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\core.py',
+   'PYMODULE'),
+  ('pyparsing.diagram',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\diagram\\__init__.py',
+   'PYMODULE'),
+  ('pyparsing.actions',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\actions.py',
+   'PYMODULE'),
+  ('pyparsing.exceptions',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\exceptions.py',
+   'PYMODULE'),
+  ('pyparsing.util',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pyparsing\\util.py',
+   'PYMODULE'),
   ('pdb',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\pdb.py',
@@ -852,10 +896,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\__init__.py',
    'PYMODULE'),
-  ('_py_abc',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\_py_abc.py',
-   'PYMODULE'),
   ('getpass',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\getpass.py',
@@ -876,13 +916,17 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\http\\cookiejar.py',
    'PYMODULE'),
-  ('tracemalloc',
+  ('_py_abc',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tracemalloc.py',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\_py_abc.py',
    'PYMODULE'),
   ('stringprep',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tracemalloc.py',
    'PYMODULE'),
   ('parse_html',
    'C:\\Users\\Impact Tester\\Documents\\python_application\\parse_html.py',
@@ -1803,6 +1847,802 @@
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\tools.py',
    'PYMODULE'),
+  ('matplotlib.lines',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\lines.py',
+   'PYMODULE'),
+  ('matplotlib.patheffects',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\patheffects.py',
+   'PYMODULE'),
+  ('matplotlib.patches',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\patches.py',
+   'PYMODULE'),
+  ('matplotlib.bezier',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\bezier.py',
+   'PYMODULE'),
+  ('matplotlib.hatch',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\hatch.py',
+   'PYMODULE'),
+  ('matplotlib.backend_bases',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backend_bases.py',
+   'PYMODULE'),
+  ('matplotlib.collections',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\collections.py',
+   'PYMODULE'),
+  ('matplotlib.cm',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\cm.py',
+   'PYMODULE'),
+  ('matplotlib._cm_listed',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_cm_listed.py',
+   'PYMODULE'),
+  ('matplotlib._cm',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_cm.py',
+   'PYMODULE'),
+  ('matplotlib.scale',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\scale.py',
+   'PYMODULE'),
+  ('matplotlib.texmanager',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\texmanager.py',
+   'PYMODULE'),
+  ('matplotlib.dviread',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\dviread.py',
+   'PYMODULE'),
+  ('matplotlib.backend_managers',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backend_managers.py',
+   'PYMODULE'),
+  ('matplotlib._pylab_helpers',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_pylab_helpers.py',
+   'PYMODULE'),
+  ('matplotlib.widgets',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\widgets.py',
+   'PYMODULE'),
+  ('cycler',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\cycler.py',
+   'PYMODULE'),
+  ('matplotlib._tight_bbox',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_tight_bbox.py',
+   'PYMODULE'),
+  ('matplotlib.text',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\text.py',
+   'PYMODULE'),
+  ('matplotlib.offsetbox',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\offsetbox.py',
+   'PYMODULE'),
+  ('matplotlib.image',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\image.py',
+   'PYMODULE'),
+  ('PIL.PngImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PngImagePlugin.py',
+   'PYMODULE'),
+  ('PIL._deprecate',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\_deprecate.py',
+   'PYMODULE'),
+  ('PIL._binary',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\_binary.py',
+   'PYMODULE'),
+  ('PIL.ImageSequence',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageSequence.py',
+   'PYMODULE'),
+  ('PIL.ImagePalette',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImagePalette.py',
+   'PYMODULE'),
+  ('PIL.PaletteFile',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PaletteFile.py',
+   'PYMODULE'),
+  ('PIL.ImageColor',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageColor.py',
+   'PYMODULE'),
+  ('colorsys',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\colorsys.py',
+   'PYMODULE'),
+  ('PIL.GimpPaletteFile',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\GimpPaletteFile.py',
+   'PYMODULE'),
+  ('PIL.GimpGradientFile',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\GimpGradientFile.py',
+   'PYMODULE'),
+  ('PIL.ImageFile',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageFile.py',
+   'PYMODULE'),
+  ('PIL._util',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\_util.py',
+   'PYMODULE'),
+  ('PIL.ImageChops',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageChops.py',
+   'PYMODULE'),
+  ('PIL.Image',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\Image.py',
+   'PYMODULE'),
+  ('PIL.XpmImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XbmImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XVThumbImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WmfImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TgaImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SunImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\SunImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SpiderImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImageTk',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageTk.py',
+   'PYMODULE'),
+  ('PIL.SgiImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PsdImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.features',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\features.py',
+   'PYMODULE'),
+  ('PIL.PdfParser',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PdfParser.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PalmImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MspImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpegImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MicImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\MicImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.McIdasImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IptcImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImtImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcoImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcnsImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\IcnsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Hdf5StubImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FtexImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FpxImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FitsStubImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FitsImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\FitsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.EpsImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DdsImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.CurImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BufrStubImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BlpImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\TiffImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImageOps',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageOps.py',
+   'PYMODULE'),
+  ('PIL.ImageShow',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageShow.py',
+   'PYMODULE'),
+  ('PIL.ImageQt',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageQt.py',
+   'PYMODULE'),
+  ('PIL.ImageFilter',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageFilter.py',
+   'PYMODULE'),
+  ('PIL.ImageCms',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageCms.py',
+   'PYMODULE'),
+  ('PIL.ImageWin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageWin.py',
+   'PYMODULE'),
+  ('PIL.PyAccess',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PyAccess.py',
+   'PYMODULE'),
+  ('PIL.PpmImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\PpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\JpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegPresets',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\JpegPresets.py',
+   'PYMODULE'),
+  ('PIL.GifImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\GifImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BmpImagePlugin',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\BmpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffTags',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\TiffTags.py',
+   'PYMODULE'),
+  ('PIL.ImageMode',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ImageMode.py',
+   'PYMODULE'),
+  ('PIL.ExifTags',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\ExifTags.py',
+   'PYMODULE'),
+  ('PIL',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\__init__.py',
+   'PYMODULE'),
+  ('PIL._version',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\PIL\\_version.py',
+   'PYMODULE'),
+  ('matplotlib.projections',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\projections\\__init__.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\mplot3d\\__init__.py',
+   'PYMODULE'),
+  ('mpl_toolkits',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\__init__.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.axes3d',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axes3d.py',
+   'PYMODULE'),
+  ('matplotlib.tri._triangulation',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_triangulation.py',
+   'PYMODULE'),
+  ('matplotlib.tri',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.tri._tritools',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_tritools.py',
+   'PYMODULE'),
+  ('matplotlib.tri._trirefine',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_trirefine.py',
+   'PYMODULE'),
+  ('matplotlib.tri._triplot',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_triplot.py',
+   'PYMODULE'),
+  ('matplotlib.tri._tripcolor',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_tripcolor.py',
+   'PYMODULE'),
+  ('matplotlib.tri._triinterpolate',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_triinterpolate.py',
+   'PYMODULE'),
+  ('matplotlib.tri._tricontour',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_tricontour.py',
+   'PYMODULE'),
+  ('matplotlib.contour',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\contour.py',
+   'PYMODULE'),
+  ('contourpy',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\contourpy\\__init__.py',
+   'PYMODULE'),
+  ('contourpy.enum_util',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\contourpy\\enum_util.py',
+   'PYMODULE'),
+  ('contourpy.chunk',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\contourpy\\chunk.py',
+   'PYMODULE'),
+  ('contourpy._version',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\contourpy\\_version.py',
+   'PYMODULE'),
+  ('matplotlib.tri._trifinder',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\tri\\_trifinder.py',
+   'PYMODULE'),
+  ('matplotlib.axes._base',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\axes\\_base.py',
+   'PYMODULE'),
+  ('matplotlib.spines',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\spines.py',
+   'PYMODULE'),
+  ('matplotlib.rcsetup',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\rcsetup.py',
+   'PYMODULE'),
+  ('matplotlib._fontconfig_pattern',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_fontconfig_pattern.py',
+   'PYMODULE'),
+  ('matplotlib.gridspec',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\gridspec.py',
+   'PYMODULE'),
+  ('matplotlib._tight_layout',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_tight_layout.py',
+   'PYMODULE'),
+  ('matplotlib.container',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\container.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.axis3d',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axis3d.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.art3d',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\mplot3d\\art3d.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.proj3d',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\mpl_toolkits\\mplot3d\\proj3d.py',
+   'PYMODULE'),
+  ('matplotlib.projections.polar',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\projections\\polar.py',
+   'PYMODULE'),
+  ('matplotlib.projections.geo',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\projections\\geo.py',
+   'PYMODULE'),
+  ('matplotlib.textpath',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\textpath.py',
+   'PYMODULE'),
+  ('matplotlib.mathtext',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\mathtext.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_agg',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py',
+   'PYMODULE'),
+  ('matplotlib.backends',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_tkagg',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\backend_tkagg.py',
+   'PYMODULE'),
+  ('matplotlib.backends._backend_tk',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\_backend_tk.py',
+   'PYMODULE'),
+  ('tkinter.simpledialog',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\simpledialog.py',
+   'PYMODULE'),
+  ('tkinter.messagebox',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\messagebox.py',
+   'PYMODULE'),
+  ('tkinter.commondialog',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\commondialog.py',
+   'PYMODULE'),
+  ('tkinter.font',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\font.py',
+   'PYMODULE'),
+  ('tkinter.filedialog',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\filedialog.py',
+   'PYMODULE'),
+  ('tkinter.dialog',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\dialog.py',
+   'PYMODULE'),
+  ('tkinter',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\__init__.py',
+   'PYMODULE'),
+  ('tkinter.constants',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\tkinter\\constants.py',
+   'PYMODULE'),
+  ('uuid',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\uuid.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_webagg',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\backend_webagg.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_webagg_core',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backends\\backend_webagg_core.py',
+   'PYMODULE'),
+  ('matplotlib._mathtext',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_mathtext.py',
+   'PYMODULE'),
+  ('matplotlib._mathtext_data',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_mathtext_data.py',
+   'PYMODULE'),
+  ('matplotlib._text_helpers',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_text_helpers.py',
+   'PYMODULE'),
+  ('matplotlib.font_manager',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\font_manager.py',
+   'PYMODULE'),
+  ('matplotlib._afm',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_afm.py',
+   'PYMODULE'),
+  ('matplotlib.backend_tools',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\backend_tools.py',
+   'PYMODULE'),
+  ('matplotlib._enums',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_enums.py',
+   'PYMODULE'),
+  ('matplotlib.transforms',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\transforms.py',
+   'PYMODULE'),
+  ('matplotlib.path',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\path.py',
+   'PYMODULE'),
+  ('matplotlib.markers',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\markers.py',
+   'PYMODULE'),
+  ('matplotlib.artist',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\artist.py',
+   'PYMODULE'),
+  ('matplotlib._docstring',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_docstring.py',
+   'PYMODULE'),
+  ('matplotlib.colors',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\colors.py',
+   'PYMODULE'),
+  ('matplotlib._color_data',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_color_data.py',
+   'PYMODULE'),
+  ('matplotlib.cbook',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\cbook\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib._api',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_api\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib._api.deprecation',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_api\\deprecation.py',
+   'PYMODULE'),
+  ('matplotlib.figure',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\figure.py',
+   'PYMODULE'),
+  ('matplotlib.legend',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\legend.py',
+   'PYMODULE'),
+  ('matplotlib.legend_handler',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\legend_handler.py',
+   'PYMODULE'),
+  ('matplotlib.layout_engine',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\layout_engine.py',
+   'PYMODULE'),
+  ('matplotlib._constrained_layout',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_constrained_layout.py',
+   'PYMODULE'),
+  ('matplotlib._layoutgrid',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_layoutgrid.py',
+   'PYMODULE'),
+  ('kiwisolver',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\kiwisolver\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.colorbar',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\colorbar.py',
+   'PYMODULE'),
+  ('matplotlib._blocking_input',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_blocking_input.py',
+   'PYMODULE'),
+  ('matplotlib.axis',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\axis.py',
+   'PYMODULE'),
+  ('dateutil.tz',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.tz.tz',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\tz.py',
+   'PYMODULE'),
+  ('dateutil.zoneinfo',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.rrule',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\rrule.py',
+   'PYMODULE'),
+  ('dateutil.easter',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\easter.py',
+   'PYMODULE'),
+  ('dateutil._common',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\_common.py',
+   'PYMODULE'),
+  ('dateutil.parser._parser',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\_parser.py',
+   'PYMODULE'),
+  ('dateutil.parser',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.parser.isoparser',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\isoparser.py',
+   'PYMODULE'),
+  ('dateutil.relativedelta',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\relativedelta.py',
+   'PYMODULE'),
+  ('dateutil.tz.win',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\win.py',
+   'PYMODULE'),
+  ('ctypes.wintypes',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\ctypes\\wintypes.py',
+   'PYMODULE'),
+  ('dateutil.tz._factories',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\_factories.py',
+   'PYMODULE'),
+  ('dateutil.tz._common',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\_common.py',
+   'PYMODULE'),
+  ('six',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\six.py',
+   'PYMODULE'),
+  ('dateutil',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\__init__.py',
+   'PYMODULE'),
+  ('dateutil._version',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\_version.py',
+   'PYMODULE'),
+  ('matplotlib.units',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\units.py',
+   'PYMODULE'),
+  ('matplotlib.axes',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\axes\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.axes._axes',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\axes\\_axes.py',
+   'PYMODULE'),
+  ('matplotlib.axes._secondary_axes',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\axes\\_secondary_axes.py',
+   'PYMODULE'),
+  ('matplotlib.streamplot',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\streamplot.py',
+   'PYMODULE'),
+  ('matplotlib.stackplot',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\stackplot.py',
+   'PYMODULE'),
+  ('matplotlib.quiver',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\quiver.py',
+   'PYMODULE'),
+  ('matplotlib.mlab',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\mlab.py',
+   'PYMODULE'),
+  ('matplotlib.dates',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\dates.py',
+   'PYMODULE'),
+  ('matplotlib.category',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\category.py',
+   'PYMODULE'),
+  ('matplotlib.ticker',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\ticker.py',
+   'PYMODULE'),
+  ('matplotlib.table',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\table.py',
+   'PYMODULE'),
   ('pandas.plotting._matplotlib.misc',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\misc.py',
@@ -1826,6 +2666,10 @@
   ('pandas.plotting._matplotlib.timeseries',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\timeseries.py',
+   'PYMODULE'),
+  ('matplotlib.pylab',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\pylab.py',
    'PYMODULE'),
   ('pandas.tseries.frequencies',
    'C:\\Users\\Impact '
@@ -1975,74 +2819,6 @@
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\core\\indexes\\datetimes.py',
    'PYMODULE'),
-  ('dateutil.parser',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.parser.isoparser',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\isoparser.py',
-   'PYMODULE'),
-  ('six',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\six.py',
-   'PYMODULE'),
-  ('dateutil.tz',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.tz.tz',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\tz.py',
-   'PYMODULE'),
-  ('dateutil.zoneinfo',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.rrule',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\rrule.py',
-   'PYMODULE'),
-  ('dateutil.easter',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\easter.py',
-   'PYMODULE'),
-  ('dateutil._common',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\_common.py',
-   'PYMODULE'),
-  ('dateutil.tz.win',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\win.py',
-   'PYMODULE'),
-  ('ctypes.wintypes',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\ctypes\\wintypes.py',
-   'PYMODULE'),
-  ('dateutil.tz._factories',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\_factories.py',
-   'PYMODULE'),
-  ('dateutil.tz._common',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\tz\\_common.py',
-   'PYMODULE'),
-  ('dateutil.parser._parser',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\parser\\_parser.py',
-   'PYMODULE'),
-  ('dateutil',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\__init__.py',
-   'PYMODULE'),
-  ('dateutil._version',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\_version.py',
-   'PYMODULE'),
-  ('dateutil.relativedelta',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\dateutil\\relativedelta.py',
-   'PYMODULE'),
   ('pandas.plotting._matplotlib.boxplot',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\boxplot.py',
@@ -2139,6 +2915,34 @@
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\io\\formats\\_color_data.py',
    'PYMODULE'),
+  ('matplotlib.pyplot',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\pyplot.py',
+   'PYMODULE'),
+  ('matplotlib.style',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\style\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.style.core',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\style\\core.py',
+   'PYMODULE'),
+  ('matplotlib',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\__init__.py',
+   'PYMODULE'),
+  ('certifi',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\certifi\\__init__.py',
+   'PYMODULE'),
+  ('certifi.core',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\certifi\\core.py',
+   'PYMODULE'),
+  ('matplotlib._version',
+   'C:\\Users\\Impact '
+   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\matplotlib\\_version.py',
+   'PYMODULE'),
   ('pandas.io.formats.style_render',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\io\\formats\\style_render.py',
@@ -2150,10 +2954,6 @@
   ('pandas.core.dtypes.api',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\pandas\\core\\dtypes\\api.py',
-   'PYMODULE'),
-  ('uuid',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\\lib\\uuid.py',
    'PYMODULE'),
   ('pandas.io.formats.console',
    'C:\\Users\\Impact '
@@ -3727,14 +4527,6 @@
   ('httpcore._ssl',
    'C:\\Users\\Impact '
    'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\httpcore\\_ssl.py',
-   'PYMODULE'),
-  ('certifi',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\certifi\\__init__.py',
-   'PYMODULE'),
-  ('certifi.core',
-   'C:\\Users\\Impact '
-   'Tester\\Documents\\python_application\\.venv\\lib\\site-packages\\certifi\\core.py',
    'PYMODULE'),
   ('httpcore._models',
    'C:\\Users\\Impact '
