@@ -31,9 +31,19 @@ def main(page: ft.Page):
     file_path = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=1000, height=50, text_size=12)  # fill all the space
     
     strength_container = ft.Container(
-        content=ft.Text("MAX FORCE : ----", size=18),
+        content=ft.Text("MAXIMUM LOAD [N] : ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
+        height=100,
+        bgcolor=ft.colors.BLUE_GREY,
+        border_radius=10,
+        animate_opacity=300,
+    )
+
+    stress_container = ft.Container(
+        content=ft.Text("ENGINEERING STRESS [MPA] : ----", size=18),
+        alignment=ft.alignment.center,
+        width=300,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -43,7 +53,7 @@ def main(page: ft.Page):
     build_container = ft.Container(
         content=ft.Text("BUILD : ------", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -53,7 +63,7 @@ def main(page: ft.Page):
     material_container = ft.Container(
         content=ft.Text("MATERIAL : ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -63,7 +73,7 @@ def main(page: ft.Page):
     dog_bone_number_container = ft.Container(
         content=ft.Text("DOG BONE NUMBER : --", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -73,7 +83,7 @@ def main(page: ft.Page):
     length_container = ft.Container(
         content=ft.Text("LENGTH : ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -83,7 +93,7 @@ def main(page: ft.Page):
     width_container = ft.Container(
         content=ft.Text("WIDTH : ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -93,16 +103,16 @@ def main(page: ft.Page):
     thickness_container = ft.Container(
         content=ft.Text("THICKNESS : ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
         animate_opacity=300,
     )
     elongation_container = ft.Container(
-        content=ft.Text("MAX TRAVEL : ----", size=18),
+        content=ft.Text("PERCENT ELONGATION [%]: ----", size=18),
         alignment=ft.alignment.center,
-        width=275,
+        width=300,
         height=100,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -130,20 +140,28 @@ def main(page: ft.Page):
             print(sample_header['BUILD NUMBER'])
             # {'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'}
 
-            build_container.content = ft.Text("BUILD : "+sample_header['BUILD NUMBER'], text_align=ft.alignment.center, size=18)
-            material_container.content = ft.Text("MATERIAL : "+sample_header['MATERIAL'], text_align=ft.alignment.center, size=18)
+            build_container.content =           ft.Text("BUILD : "+sample_header['BUILD NUMBER'], text_align=ft.alignment.center, size=18)
+            material_container.content =        ft.Text("MATERIAL : "+sample_header['MATERIAL'], text_align=ft.alignment.center, size=18)
             dog_bone_number_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
-            length_container.content = ft.Text("LENGTH : "+sample_header['LENGTH'], text_align=ft.alignment.center, size=18)
-            width_container.content = ft.Text("WIDTH : "+sample_header['WIDTH'], text_align=ft.alignment.center, size=18)
-            thickness_container.content = ft.Text("THICKNESS : "+sample_header['THICKNESS'], text_align=ft.alignment.center, size=18)
-            max_travel = sample_data
-            sample_data['Load [N]'] = sample_data['Load [N]']
-            print(sample_data["Load [N]"])
-            print(sample_data['Load [N]'].max())
-            print(sample_data['Travel [mm]'].max())
+            length_container.content =          ft.Text("LENGTH : "+sample_header['LENGTH'], text_align=ft.alignment.center, size=18)
+            width_container.content =           ft.Text("WIDTH : "+sample_header['WIDTH'], text_align=ft.alignment.center, size=18)
+            thickness_container.content =       ft.Text("THICKNESS : "+sample_header['THICKNESS'], text_align=ft.alignment.center, size=18)
+            
+            # convert strings to numbers and then the mm to meters for stress calc
+            cross_section_area = float(sample_header['THICKNESS'])*float(sample_header['WIDTH'])
+            sample_data['Load [N]'] = -sample_data['Load [N]'].astype(float)
+            sample_data['Travel [mm]'] = sample_data['Travel [mm]'].astype(float)
+            max_load = sample_data['Load [N]'].max()
+            travel_at_max_load = max(sample_data.loc[sample_data["Load [N]"] == max_load, 'Travel [mm]'])
+            percent_elongation = round(((travel_at_max_load/25) * 100),2)
 
-            elongation_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
-            strength_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
+            engineering_stress = round(max_load/cross_section_area, 4)
+
+
+
+            elongation_container.content = ft.Text("PERCENT ELONGATION [%]: " + str(percent_elongation), text_align=ft.alignment.center, size=18)
+            strength_container.content = ft.Text("MAXIMUM LOAD [N] : " + str(max_load), text_align=ft.alignment.center, size=18)
+            stress_container.content = ft.Text("ENGINEERING STRESS [MPA] : " + str(engineering_stress), text_align=ft.alignment.center, size=18)
 
 
             file_path.value = "Selected file: "+str(event.src_path)
@@ -198,7 +216,7 @@ def main(page: ft.Page):
         # properties row
         ft.Row(
             [
-                strength_container, elongation_container,
+                strength_container, elongation_container, stress_container
             ],
             alignment=ft.MainAxisAlignment.START
         )
