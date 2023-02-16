@@ -31,9 +31,9 @@ def main(page: ft.Page):
     file_path_field = ft.TextField(value=" ", text_align=ft.TextAlign.LEFT, width=900, height=50, text_size=12)  # fill all the space
     
     thresholds_container = ft.Container(
-        content=ft.Text("TH [N] : ----", size=18),
+        content=ft.Text("THRESHOLDS : ----", size=18),
         alignment=ft.alignment.center,
-        width=w,
+        width=w*3+20,
         height=50,
         bgcolor=ft.colors.BLUE_GREY,
         border_radius=10,
@@ -143,6 +143,7 @@ def main(page: ft.Page):
             print(stress_threshold)
             print(elongation_threshold)
             # {'BUILD NUMBER': '00000', 'MATERIAL': 'PA12', 'DOG BONE NUMBER': '5', 'LENGTH': '75.00', 'WIDTH': '4.0', 'THICKNESS': '2.0'}
+            thresholds_container.content =      ft.Text(str(sample_header['MATERIAL'])+" THRESHOLDS : "+str(thresholds[sample_header['MATERIAL']]),text_align=ft.alignment.center, size=18)
             build_container.content =           ft.Text("BUILD : "+sample_header['BUILD NUMBER'], text_align=ft.alignment.center, size=18)
             material_container.content =        ft.Text("MATERIAL : "+sample_header['MATERIAL'], text_align=ft.alignment.center, size=18)
             dog_bone_number_container.content = ft.Text("DOG BONE NUMBER : "+sample_header['DOG BONE NUMBER'], text_align=ft.alignment.center, size=18)
@@ -289,6 +290,13 @@ def main(page: ft.Page):
             [
                 strength_container, elongation_container, stress_container
             ],
+            alignment=ft.MainAxisAlignment.START
+        ),
+        # thresholds row
+        ft.Row(
+            [
+                thresholds_container
+            ], 
             alignment=ft.MainAxisAlignment.START
         )
     )
