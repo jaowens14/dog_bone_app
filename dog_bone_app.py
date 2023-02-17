@@ -8,6 +8,10 @@ import pandas as pd
 import numpy as np
 from parse_html import parse_report
 
+# TODO add example header to error message
+# TODO input threshold values
+# TODO add multi-color rules
+# TODO add a clear results button/function
 
 # git add .
 # git commit -m "commit here"
