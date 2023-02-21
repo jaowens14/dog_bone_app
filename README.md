@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # dog_bone_app
 
 The main branch has html files that are the input for this application. 
@@ -12,7 +12,3 @@ There are two modes to enter the reports.
 (2) The reports can be selected manually with the button
 
 Upon processing the boxes will present the data or metrics calculated and turn red if they are below the acceptable values which are dummy values for now.
-
-=======
-This remote contains the code for the dog bone app
->>>>>>> master
