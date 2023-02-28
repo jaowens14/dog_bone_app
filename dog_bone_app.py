@@ -28,6 +28,15 @@ thresholds = {
 }
 
 w = 350
+
+
+
+class Dogbone(UserControl):
+    def __init__(self, dog_bone_number, ):
+        super().__init__()
+
+
+
 def main(page: ft.Page):
     page.title = "Dog Bone Application"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
