@@ -97,6 +97,7 @@ class Dogbone(ft.UserControl):
         self.task_delete(self)
 
 
+
 def main(page: ft.Page):
     page.title = "Dog Bone Application"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
