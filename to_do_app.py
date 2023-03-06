@@ -19,6 +19,7 @@ class Task(ft.UserControl):
                 ft.Row(
                     spacing=0,
                     controls=[
+                        ft.TextField(value="test"),
                         ft.IconButton(
                             icon=ft.icons.CREATE_OUTLINED,
                             tooltip="Edit to do",
