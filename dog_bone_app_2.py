@@ -1,34 +1,49 @@
 import flet as ft
 
-
-class Header(ft.UserControl):
-    def __init__(self):
+class DogBone(ft.UserControl):
+    def __init__(self, file_path, number, length, width, thickness):
         super().__init__()
-        
+        self.file_path = file_path
+        self.number    = number
+        self.length    = length
+        self.width     = width
+        self.thickness = thickness
+
+
     def build(self):
-        self.header = 
+
+        self.dog_bone = ft.Row(
+            spacing=1,
+            controls=[
+                ft.TextField(value=self.file_path)
+            ]
+        )
 
 
 
-
+        return self.dog_bone
+    
 
 class DogBoneApp(ft.UserControl):
     def build(self):
-        self.header = ft.TextField(hint_text="Header")
-        self.dogbones = ft.Column()
-
+        self.test = ft.TextField(hint_text="Enter a number")
+        self.add_dog_bone_button = ft.IconButton
         return ft.Column(
-            width=600,
-            controls=[
-                ft.Row(
-                    controls=[
-                        self.header,
-                        ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.add_dog_bone)
-                    ],
-                ),
-                self.dogbones,
-            ],
+                width=600,
+                controls=[
+                    self.test
+                ]
         )
-    
-    def add_dog_bone(self, e):
-        #self.dogbones.controls.append(ft.)
+
+
+def main(page: ft.Page):
+    page.title = "DOG BONE APP"
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.update()
+
+    dog_bone_app = DogBoneApp()
+    dog_bone = DogBone('test', 3,0.0,0.1,0.2)
+    page.add(dog_bone)
+    page.add(dog_bone_app)
+
+ft.app(target=main)
