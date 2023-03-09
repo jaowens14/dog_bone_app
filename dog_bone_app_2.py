@@ -1,6 +1,9 @@
 import flet as ft
 import os 
+import stat
 from parse_html import parse_report
+import pandas as pd
+import pyscreenshot as pss
 
 from color_map import value_to_color
 
@@ -142,9 +145,15 @@ class DogBone(ft.UserControl):
     #########################################################################
     # data processing area
 
-    def process_dog_bone(self, e, material):
+    def process_dog_bone(self, e, material, data_file_path):
         # load the data
+        os.chmod(data_file_path, stat.S_IRWXO)
+        # open the file
+        report = open(data_file_path, 'r')
         # get the data out of the html
+        data = parse_report(report)
+        # REMEMBER the columns are : columns=['Reading Number', 'Load [N]', 'Travel [mm]', 'Time [sec]'])
+
         # calculate the values, results
         # score the results
         # write results to fields
@@ -233,10 +242,32 @@ class DogBoneApp(ft.UserControl):
             self.message.value = "* Build Report Saved *"
             self.message.bgcolor = ft.colors.GREEN_400
             self.update()
+
         else:
             self.message.value = "Please Lock All Dog Bones"
             self.message.bgcolor = ft.colors.AMBER
             self.update()
+
+    def capture_build(self, e):
+		page = e.control.page
+		y = page.window_top
+		x = page.window_left
+		w = page.window_width
+		h = page.window_height
+
+		# PROCESS SCREESHOT
+		screen = ImageGrab.grab(
+		# AREA FOR YOU SCREENSHOT
+			bbox =(x,y,w+x,h+y) 
+			)
+		# GET TIME FOR NAME YOU FILE UPLOAD
+		t = str(time.time())
+		myimagelocation = f"assets/{t.split('.')[0]}.png"
+		screen.save(myimagelocation)
+
+
+
+
     
     def review_build(self, e):
         self.message.value = "Report Loaded"
@@ -258,7 +289,9 @@ class DogBoneApp(ft.UserControl):
                     for i in range(len(build_files)):
                         print(build_files[i])
                         self.dog_bones.controls[i].file_path.value = build_files[i]
-                        self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value)
+                        data_file_path = os.path.join(e.path, str(build_files[i]))
+                        print(data_file_path)
+                        self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value, data_file_path)
                         self.dog_bones.controls[i].update()
                     self.message.bgcolor = ft.colors.WHITE
                     self.message.update()

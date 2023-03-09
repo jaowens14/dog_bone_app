@@ -232,6 +232,7 @@ def main(page: ft.Page):
             width_container.content =           ft.Text("WIDTH : "+sample_header['WIDTH'], text_align=ft.alignment.center, size=18)
             thickness_container.content =       ft.Text("THICKNESS : "+sample_header['THICKNESS'], text_align=ft.alignment.center, size=18)
             # convert strings to numbers and then the mm to meters for stress calc
+            
             cross_section_area = float(sample_header['THICKNESS'])*float(sample_header['WIDTH'])
             sample_data['Load [N]'] = -sample_data['Load [N]'].astype(float)
             sample_data['Travel [mm]'] = sample_data['Travel [mm]'].astype(float)
@@ -239,6 +240,7 @@ def main(page: ft.Page):
             travel_at_max_load = max(sample_data.loc[sample_data["Load [N]"] == max_load, 'Travel [mm]'])
             percent_elongation = round(((travel_at_max_load/25) * 100),2)
             engineering_stress = round(max_load/cross_section_area, 4)
+
             elongation_container.content = ft.Text("PERCENT ELONGATION [%]: " + str(percent_elongation), text_align=ft.alignment.center, size=18)
             strength_container.content = ft.Text("MAXIMUM LOAD [N] : " + str(max_load), text_align=ft.alignment.center, size=18)
             stress_container.content = ft.Text("ENGINEERING STRESS [MPA] : " + str(engineering_stress), text_align=ft.alignment.center, size=18)
