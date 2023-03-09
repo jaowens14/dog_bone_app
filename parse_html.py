@@ -32,6 +32,7 @@ def parse_report(report):
     #########################################################
     ### Processing HTML for data header
 
+    '''
     # get the text and split the lines by space
     text = soup.get_text().splitlines()
     # check the sections for the Build number
@@ -45,8 +46,8 @@ def parse_report(report):
     for field in header:
         k,v = field.split(": ")
         header_dict[k] = v
-    
-    return header_dict, force_disp_dataframe
+    '''
+    return force_disp_dataframe
 
 
 
