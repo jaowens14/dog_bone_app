@@ -1,33 +1,50 @@
-import flet as ft
+import flet
+from flet import (
+    Checkbox,
+    Column,
+    FloatingActionButton,
+    IconButton,
+    Page,
+    Row,
+    Tab,
+    Tabs,
+    TextField,
+    UserControl,
+    colors,
+    icons,
+)
 
 
-class Task(ft.UserControl):
-    def __init__(self, task_name, task_delete):
+class Task(UserControl):
+    def __init__(self, task_name, task_status_change, task_delete):
         super().__init__()
+        self.completed = False
         self.task_name = task_name
+        self.task_status_change = task_status_change
         self.task_delete = task_delete
 
     def build(self):
-        self.display_task = ft.Checkbox(value=False, label=self.task_name)
-        self.edit_name = ft.TextField(expand=1)
+        self.display_task = Checkbox(
+            value=False, label=self.task_name, on_change=self.status_changed
+        )
+        self.edit_name = TextField(expand=1)
 
-        self.display_view = ft.Row(
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+        self.display_view = Row(
+            alignment="spaceBetween",
+            vertical_alignment="center",
             controls=[
                 self.display_task,
-                ft.Row(
+                Row(
                     spacing=0,
                     controls=[
-                        ft.TextField(value="test"),
-                        ft.IconButton(
-                            icon=ft.icons.CREATE_OUTLINED,
-                            tooltip="Edit to do",
+                        IconButton(
+                            icon=icons.CREATE_OUTLINED,
+                            tooltip="Edit To-Do",
                             on_click=self.edit_clicked,
                         ),
-                        ft.IconButton(
-                            ft.icons.DELETE_OUTLINE,
-                            tooltip="Delete to do",
+                        IconButton(
+                            icons.DELETE_OUTLINE,
+                            tooltip="Delete To-Do",
                             on_click=self.delete_clicked,
                         ),
                     ],
@@ -35,21 +52,21 @@ class Task(ft.UserControl):
             ],
         )
 
-        self.edit_view = ft.Row(
+        self.edit_view = Row(
             visible=False,
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            alignment="spaceBetween",
+            vertical_alignment="center",
             controls=[
                 self.edit_name,
-                ft.IconButton(
-                    icon=ft.icons.DONE_OUTLINE_OUTLINED,
-                    icon_color=ft.colors.GREEN,
+                IconButton(
+                    icon=icons.DONE_OUTLINE_OUTLINED,
+                    icon_color=colors.GREEN,
                     tooltip="Update To-Do",
                     on_click=self.save_clicked,
                 ),
             ],
         )
-        return ft.Column(controls=[self.display_view, self.edit_view])
+        return Column(controls=[self.display_view, self.edit_view])
 
     def edit_clicked(self, e):
         self.edit_name.value = self.display_task.label
@@ -63,53 +80,82 @@ class Task(ft.UserControl):
         self.edit_view.visible = False
         self.update()
 
+    def status_changed(self, e):
+        self.completed = self.display_task.value
+        self.task_status_change(self)
+
     def delete_clicked(self, e):
         self.task_delete(self)
 
 
-
-
-
-class TodoApp(ft.UserControl):
+class TodoApp(UserControl):
     def build(self):
-        self.new_task = ft.TextField(hint_text="what needs to be done?", expand=True)
-        self.tasks = ft.Column()
+        self.new_task = TextField(hint_text="Whats needs to be done?", expand=True)
+        self.tasks = Column()
 
-        return ft.Column(
-            width = 600,
-            controls = [
-                ft.Row(
+        self.filter = Tabs(
+            selected_index=0,
+            on_change=self.tabs_changed,
+            tabs=[Tab(text="all"), Tab(text="active"), Tab(text="completed")],
+        )
+
+        # application's root control (i.e. "view") containing all other controls
+        return Column(
+            width=600,
+            controls=[
+                Row(
                     controls=[
                         self.new_task,
-                        ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.add_clicked),
-                        ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.print_values),
-
+                        FloatingActionButton(icon=icons.ADD, on_click=self.add_clicked),
                     ],
                 ),
-                self.tasks,
+                Column(
+                    spacing=25,
+                    controls=[
+                        self.filter,
+                        self.tasks,
+                    ],
+                ),
             ],
         )
-    
+
     def add_clicked(self, e):
-        task = Task(self.new_task.value, self.task_delete)
+        task = Task(self.new_task.value, self.task_status_change, self.task_delete)
         self.tasks.controls.append(task)
         self.new_task.value = ""
+        self.update()
+
+    def task_status_change(self, task):
         self.update()
 
     def task_delete(self, task):
         self.tasks.controls.remove(task)
         self.update()
 
-    def print_values(self, e):
-        for t in self.tasks.controls:
-            print(t.task_name)
-    
-def main(page: ft.Page):
-    page.title = "To Do App"
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    def update(self):
+        status = self.filter.tabs[self.filter.selected_index].text
+        for task in self.tasks.controls:
+            task.visible = (
+                status == "all"
+                or (status == "active" and task.completed == False)
+                or (status == "completed" and task.completed)
+            )
+        super().update()
+
+    def tabs_changed(self, e):
+        self.update()
+
+
+def main(page: Page):
+    page.title = "ToDo App"
+    page.horizontal_alignment = "center"
     page.update()
 
-    todo = TodoApp()
-    page.add(todo)
+    # create application instance
+    app = TodoApp()
 
-ft.app(target=main)
+    # add application's root control to the page
+    page.add(app)
+
+
+flet.app(target=main)
