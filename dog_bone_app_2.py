@@ -25,7 +25,7 @@ class Build(ft.UserControl):
                 ft.Row(
                     alignment=ft.alignment.center,
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    spacing=20,
+                    spacing=10,
                     controls=[
                         self.number,
                         self.material,
@@ -33,7 +33,7 @@ class Build(ft.UserControl):
                         self.stress_threshold,
                     ],
                 ),
-            ft.Divider(thickness=5)
+            ft.Divider(thickness=5, color=ft.colors.BLUE_GREY)
             ],
         )
         
@@ -61,13 +61,13 @@ class DogBone(ft.UserControl):
     def __init__(self, delete_func):
         super().__init__()
         # self.file_picker =ft.FilePicker(on_result=self.process_file,visible=True)
-        self.file_path =  ft.TextField(label='File',           value='', expand=2)
-        self.number =     ft.TextField(label='Dog Bone Number',value='', expand=1)
-        self.length =     ft.TextField(label='Length [mm]',    value='', expand=1)
-        self.width =      ft.TextField(label='Width [mm]',     value='', expand=1)
-        self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=1)
-        self.elongation = ft.TextField(label='Elongation [%]', value='', expand=1, read_only=True)
-        self.stress =     ft.TextField(label='Stress [MPA]',   value='', expand=1, read_only=True)
+        self.file_path =  ft.TextField(label='File',           value='', expand=1)
+        self.number =     ft.TextField(label='Dog Bone Number',value='', expand=2)
+        self.length =     ft.TextField(label='Length [mm]',    value='', expand=2)
+        self.width =      ft.TextField(label='Width [mm]',     value='', expand=2)
+        self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=2)
+        self.elongation = ft.TextField(label='Elongation [%]', value='', expand=2, read_only=True)
+        self.stress =     ft.TextField(label='Stress [MPA]',   value='', expand=2, read_only=True)
         self.delete_func = delete_func
         self.delete =     ft.IconButton(ft.icons.DELETE, on_click=self.delete_dog_bone)
         self.lock =       ft.IconButton(ft.icons.LOCK_OPEN_OUTLINED, on_click=self.lock_dog_bone)
@@ -78,9 +78,9 @@ class DogBone(ft.UserControl):
         self.view = ft.Row(
             alignment=ft.alignment.center,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=20,
+            spacing=10,
             controls=[
-                self.file_picker,
+                #self.file_picker,
                 self.file_path, 
                 self.number, 
                 self.length, 
@@ -127,23 +127,29 @@ class DogBone(ft.UserControl):
 
 class DogBoneApp(ft.UserControl):
     def build(self):
-        self.title = ft.Text("Add Dog Bone")
         self.header = Build()
         self.dog_bones = ft.Column()
 
         # application's root control (i.e. "view") containing all other controls
         return ft.Column(
-            spacing=20,
-            width=1000,
+            spacing=10,
+            width=1500,
             controls=[
                 self.header,
                 ft.Row(
                     controls=[
-                        self.title,
-                        ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.add_clicked),
+                        ft.FloatingActionButton(icon=ft.icons.ADD, on_click=self.add_clicked, text="Add A Dog Bone", expand=1),
+                        ft.TextField(label="Error Messages", value='', read_only=True, expand=2),
                     ],
                 ),
                 self.dog_bones,
+                ft.Divider(thickness=5, color=ft.colors.BLUE_GREY),
+                ft.Row(
+                    controls=[
+                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN),
+                        ft.FloatingActionButton(icon=ft.icons.DELETE, text="Clear All Data", expand=1, bgcolor=ft.colors.RED)
+                    ],
+                ),
             ],
         )
 
@@ -162,7 +168,7 @@ class DogBoneApp(ft.UserControl):
 
 
 def main(page: ft.Page):
-    page.title = "ToDo App"
+    page.title = "Dog Bone App"
     page.scroll = ft.ScrollMode.ALWAYS
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.update()
