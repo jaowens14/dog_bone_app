@@ -289,7 +289,12 @@ class DogBoneApp(ft.UserControl):
         print("save html files")
 
     def upload_build_directory(self, e):
-        upload_build(self.build_output_path)
+        try:
+            upload_build(self.build_output_path)
+        except Exception as e:
+            self.message.bgcolor = ft.colors.AMBER
+            self.message.value = "UPLOAD ERROR"+str(e)
+            self.update()        
         print("upload files")
 
     def get_directory_result(self, e: ft.FilePickerResultEvent):

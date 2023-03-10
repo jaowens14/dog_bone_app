@@ -3,15 +3,15 @@
         "NUMBER": "0033",
         "ELONGATION THRESHOLD": 20.0,
         "STRESS THRESHOLD": 20.0,
-        "MATERIAL": "PA12"
+        "MATERIAL": "PA11"
     },
     "DOG_BONES": [
         {
             "File": "0033_1.html",
             "Number": "1",
-            "Length": "1",
-            "Width": "1",
-            "Thickness": "1",
+            "Length": "",
+            "Width": "",
+            "Thickness": "",
             "Elongation": "",
             "Load": ""
         },

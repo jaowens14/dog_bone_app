@@ -3,20 +3,20 @@
         "NUMBER": "0000",
         "ELONGATION THRESHOLD": 20.0,
         "STRESS THRESHOLD": 20.0,
-        "MATERIAL": "M95"
+        "MATERIAL": "PA11"
     },
     "DOG_BONES": [
         {
-            "File": "0000_1.html",
+            "File": "",
             "Number": "1",
-            "Length": "1",
-            "Width": "1",
-            "Thickness": "1",
+            "Length": "",
+            "Width": "",
+            "Thickness": "",
             "Elongation": "",
             "Load": ""
         },
         {
-            "File": "0000_2.html",
+            "File": "",
             "Number": "2",
             "Length": "",
             "Width": "",
@@ -25,7 +25,7 @@
             "Load": ""
         },
         {
-            "File": "0000_3.html",
+            "File": "",
             "Number": "3",
             "Length": "",
             "Width": "",
@@ -34,7 +34,7 @@
             "Load": ""
         },
         {
-            "File": "0000_4.html",
+            "File": "",
             "Number": "4",
             "Length": "",
             "Width": "",
@@ -43,7 +43,7 @@
             "Load": ""
         },
         {
-            "File": "0000_6.html",
+            "File": "",
             "Number": "5",
             "Length": "",
             "Width": "",
