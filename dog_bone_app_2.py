@@ -199,12 +199,23 @@ class DogBoneApp(ft.UserControl):
                 ft.Row(
                     controls=[
                         ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN, on_click=self.save_build),
+                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff),
                         self.notes,
                         self.get_directory_dialog,
                     ],
                 ),
             ],
         )
+
+    def print_stuff(self, e):
+        self.message.bgcolor = ft.colors.AMBER
+        self.update()
+        time.sleep(1.0)
+
+        self.message.value = str(os.listdir('.\\'))
+        self.update()
+        time.sleep(1.0)
+
 
     def add_clicked(self, e):
         new_dog_bone = DogBone(self.remove_dog_bone)
@@ -340,8 +351,6 @@ class DogBoneApp(ft.UserControl):
                 self.update()
 
 
-
-
 def main(page: ft.Page):
     page.title = "Dog Bone App"
     page.scroll = ft.ScrollMode.ALWAYS
@@ -354,4 +363,4 @@ def main(page: ft.Page):
     # add application's root control to the page
     page.add(dog_bone_app)
 
-ft.app(target=main)
+ft.app(target=main,assets_dir="assets")
