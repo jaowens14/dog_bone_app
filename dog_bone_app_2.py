@@ -3,7 +3,8 @@ import os
 import stat
 from parse_html import parse_report
 import pandas as pd
-import pyscreenshot as pss
+from PIL import ImageGrab
+import time
 
 from color_map import value_to_color
 
@@ -192,6 +193,13 @@ class DogBone(ft.UserControl):
 
 
 class DogBoneApp(ft.UserControl):
+    def __init__(self, x, y, w, h):
+        super().__init__()
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        
     def build(self):
         
         self.message = ft.TextField(label="Message", value='', read_only=True, expand=2)
@@ -242,6 +250,7 @@ class DogBoneApp(ft.UserControl):
             self.message.value = "* Build Report Saved *"
             self.message.bgcolor = ft.colors.GREEN_400
             self.update()
+            self.capture_build(e)
 
         else:
             self.message.value = "Please Lock All Dog Bones"
@@ -249,26 +258,18 @@ class DogBoneApp(ft.UserControl):
             self.update()
 
     def capture_build(self, e):
-		page = e.control.page
-		y = page.window_top
-		x = page.window_left
-		w = page.window_width
-		h = page.window_height
+        print("HERE")
+        self.page.window_maximized = True
+        self.page.update()
+        time.sleep(0.5)
+        screenshot = ImageGrab.grab()
+        self.page.window_maximized = False
+        self.page.update()
 
-		# PROCESS SCREESHOT
-		screen = ImageGrab.grab(
-		# AREA FOR YOU SCREENSHOT
-			bbox =(x,y,w+x,h+y) 
-			)
-		# GET TIME FOR NAME YOU FILE UPLOAD
-		t = str(time.time())
-		myimagelocation = f"assets/{t.split('.')[0]}.png"
-		screen.save(myimagelocation)
+        filepath = os.path.join(self.build_directory, "Report"+str(time.time()).strip('.')[0]+'.png')
+        print(filepath)
+        screenshot.save(filepath, 'PNG')
 
-
-
-
-    
     def review_build(self, e):
         self.message.value = "Report Loaded"
         self.message.bgcolor = ft.colors.GREEN_400
@@ -285,13 +286,16 @@ class DogBoneApp(ft.UserControl):
                 try:
                     self.message.value = e.path if e.path else "Cancelled!"
                     build_files = os.listdir(self.message.value)
+                    build_files = [f for f in build_files if f.endswith('.html')]
+                    print(build_files)
                     # for every file in the folder, do stuff
                     for i in range(len(build_files)):
                         print(build_files[i])
                         self.dog_bones.controls[i].file_path.value = build_files[i]
-                        data_file_path = os.path.join(e.path, str(build_files[i]))
-                        print(data_file_path)
-                        self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value, data_file_path)
+                        self.build_directory = e.path
+                        self.data_file_path = os.path.join(e.path, str(build_files[i]))
+                        print(self.data_file_path)
+                        self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value, self.data_file_path)
                         self.dog_bones.controls[i].update()
                     self.message.bgcolor = ft.colors.WHITE
                     self.message.update()
@@ -326,9 +330,13 @@ def main(page: ft.Page):
     page.scroll = ft.ScrollMode.ALWAYS
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.update()
-
+    x = page.window_left
+    y = page.window_top 
+    w = page.window_max_width 
+    h = page.window_max_height
+    print(x,y,w,h)
     # create application instance
-    dog_bone_app = DogBoneApp()
+    dog_bone_app = DogBoneApp(x,y,w,h)
 
     # add application's root control to the page
     page.add(dog_bone_app)
