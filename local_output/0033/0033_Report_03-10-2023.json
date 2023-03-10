@@ -9,9 +9,9 @@
         {
             "File": "0033_1.html",
             "Number": "1",
-            "Length": "",
-            "Width": "",
-            "Thickness": "",
+            "Length": "1",
+            "Width": "1",
+            "Thickness": "1",
             "Elongation": "",
             "Load": ""
         },
@@ -19,7 +19,7 @@
             "File": "0033_2.html",
             "Number": "2",
             "Length": "",
-            "Width": "30",
+            "Width": "",
             "Thickness": "",
             "Elongation": "",
             "Load": ""

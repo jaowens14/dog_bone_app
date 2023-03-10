@@ -1,12 +1,16 @@
 from __future__ import print_function
 
-import os.path
+import os
 
+import google.auth
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+from googleapiclient.http import MediaFileUpload
+
+
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly',
@@ -55,5 +59,78 @@ def main():
         print(f'An error occurred: {error}')
 
 
-if __name__ == '__main__':
-    main()
+def create_folder(folder_name):
+    """ Create a folder and prints the folder ID
+    Returns : Folder Id
+
+    Load pre-authorized user credentials from the environment.
+    TODO(developer) - See https://developers.google.com/identity
+    for guides on implementing OAuth2 for the application.
+    """
+    creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+
+
+    try:
+        # create drive api client
+        service = build('drive', 'v3', credentials=creds)
+        file_metadata = {
+            'name': folder_name,
+            'mimeType': 'application/vnd.google-apps.folder',
+            'parents' : ['1TiH0dWR9M-oDiAZZBLXCjYJgy6QqBtNW']
+        }
+
+        # pylint: disable=maybe-no-member
+        file = service.files().create(body=file_metadata, fields='id'
+                                      ).execute()
+        print(F'Folder ID: "{file.get("id")}".')
+        return file.get('id')
+
+    except HttpError as error:
+        print(F'An error occurred: {error}')
+        return None
+    
+
+def upload_to_folder(folder_id, file_path):
+    """Upload a file to the specified folder and prints file ID, folder ID
+    Args: Id of the folder
+    Returns: ID of the file uploaded
+
+    Load pre-authorized user credentials from the environment.
+    TODO(developer) - See https://developers.google.com/identity
+    for guides on implementing OAuth2 for the application.
+    """
+    creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+
+    try:
+        # create drive api client
+        service = build('drive', 'v3', credentials=creds)
+        file_name = str(os.path.basename(os.path.normpath(file_path)))
+
+        file_metadata = {
+            'name': file_name,
+            'parents': [folder_id]
+        }
+        media = MediaFileUpload(file_path, resumable=True)
+        # pylint: disable=maybe-no-member
+        file = service.files().create(body=file_metadata, media_body=media,
+                                      fields='id').execute()
+        print(F'File ID: "{file.get("id")}".')
+        return file.get('id')
+
+    except HttpError as error:
+        print(F'An error occurred: {error}')
+        return None
+    
+
+
+### theres a lot of extra stuff in here but it works.
+
+
+def upload_build(path):
+    build_number = os.path.basename(os.path.normpath(path))
+    build_folder_id = create_folder(build_number)
+    for f in os.listdir(path):
+        f = os.path.join(path, f)
+        upload_to_folder(build_folder_id, f)
+
+

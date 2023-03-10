@@ -9,6 +9,7 @@ import json
 from parse_html import parse_report
 from color_map import value_to_color
 from helper_functions import create_build_output_directory
+from google_drive_autho import upload_build
 import shutil
 
 from pydrive.auth import GoogleAuth
@@ -176,6 +177,8 @@ class DogBoneApp(ft.UserControl):
         self.report = {}
         self.t = '' # time stamp
         self.message = ft.TextField(label="Message", value='', read_only=True, expand=2)
+        self.notes   = ft.TextField(label="Notes", value='', expand=1)
+
         self.header = Build()
         self.dog_bones = ft.Column()
         self.get_directory_dialog = ft.FilePicker(on_result=self.get_directory_result)
@@ -196,7 +199,7 @@ class DogBoneApp(ft.UserControl):
                 ft.Row(
                     controls=[
                         ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN, on_click=self.save_build),
-                        ft.FloatingActionButton(icon=ft.icons.FOLDER, text="Review Build Report",      expand=1, bgcolor=ft.colors.AMBER  , on_click=self.review_build),
+                        self.notes,
                         self.get_directory_dialog,
                     ],
                 ),
@@ -246,32 +249,37 @@ class DogBoneApp(ft.UserControl):
 
 
     def create_json_from_data(self, e):
-
-        self.report['BUILD'] = {
-            "NUMBER": self.header.number.value,
-            "ELONGATION THRESHOLD": self.header.elongation_threshold.value,
-            "STRESS THRESHOLD": self.header.stress_threshold.value,
-            "MATERIAL": self.header.material.value,
-            }
-        dogbones = []
-        for db in self.dog_bones.controls:
-            dogbone = {
-                "File" :      db.file_path.value, 
-                "Number":     db.number.value,
-                "Length":     db.length.value,
-                "Width":      db.width.value,
-                "Thickness":  db.thickness.value,
-                "Elongation": db.elongation.value,
-                "Load":       db.stress.value,
+        try:
+            self.report['BUILD'] = {
+                "NUMBER": self.header.number.value,
+                "ELONGATION THRESHOLD": self.header.elongation_threshold.value,
+                "STRESS THRESHOLD": self.header.stress_threshold.value,
+                "MATERIAL": self.header.material.value,
                 }
-            dogbones.append(dogbone)
-        self.report['DOG_BONES'] = dogbones
-        json_output_file = os.path.join(self.build_output_path, str(self.header.number.value)+"_Report_"+str(self.t)+'.json')
-        print(json_output_file)
-        jf = open(json_output_file, 'x')
-        json.dump(self.report, jf, indent=4)
-        print(self.report)
-        print("Create json")
+            dogbones = []
+            for db in self.dog_bones.controls:
+                dogbone = {
+                    "File" :      db.file_path.value, 
+                    "Number":     db.number.value,
+                    "Length":     db.length.value,
+                    "Width":      db.width.value,
+                    "Thickness":  db.thickness.value,
+                    "Elongation": db.elongation.value,
+                    "Load":       db.stress.value,
+                    }
+                dogbones.append(dogbone)
+            self.report['DOG_BONES'] = dogbones
+            json_output_file = os.path.join(self.build_output_path, str(self.header.number.value)+"_Report_"+str(self.t)+'.json')
+            print(json_output_file)
+            jf = open(json_output_file, 'x')
+            json.dump(self.report, jf, indent=4)
+            print(self.report)
+            print("Create json")
+        except FileExistsError:
+            self.message.bgcolor = ft.colors.AMBER
+            self.message.value = "Looks like some of those files already exist. Check your local_output directory."
+            self.update()
+
 
     def save_html_files(self, e):
         for db in self.dog_bones.controls:
@@ -281,14 +289,8 @@ class DogBoneApp(ft.UserControl):
         print("save html files")
 
     def upload_build_directory(self, e):
+        upload_build(self.build_output_path)
         print("upload files")
-
-
-    def review_build(self, e):
-        self.message.value = "This is broken right now"
-        self.message.bgcolor = ft.colors.GREEN_400
-        print("review build")
-        self.update()
 
     def get_directory_result(self, e: ft.FilePickerResultEvent):
         if len(self.dog_bones.controls) == 0:
