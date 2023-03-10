@@ -1,0 +1,13 @@
+{
+    'BUILD': {'NUMBER': '0033', 'ELONGATION THRESHOLD': 20.0, 'STRESS THRESHOLD': 20.0, 'MATERIAL': 'PA12'}, 
+
+'DOG_BONES': [
+    
+    {'File': '0033_1.html', 'Number': '1', 'Length': '4', 'Width': '5', 'Thickness': '6', 'Elongation': '', 'Load': ''}, 
+    {'File': '0033_2.html', 'Number': '2', 'Length': '4', 'Width': '5', 'Thickness': '6', 'Elongation': '', 'Load': ''}, 
+    {'File': '0033_3.html', 'Number': '3', 'Length': '4', 'Width': '5', 'Thickness': '6', 'Elongation': '', 'Load': ''}, 
+    {'File': '0033_4.html', 'Number': '4', 'Length': '4', 'Width': '5', 'Thickness': '6', 'Elongation': '', 'Load': ''}, 
+    {'File': '0033_5.html', 'Number': '5', 'Length': '4', 'Width': '5', 'Thickness': '6', 'Elongation': '', 'Load': ''}
+]
+
+}

@@ -1,10 +1,20 @@
 import pandas as pd
 import numpy as np
 import flet as ft
-
+import os
 #  |red------ -2 std---yellow-- -std      average     +std    +2 std
 
 
+
+local_output_path = ".\\local_output\\"
+
+if os.path.exists(local_output_path):
+    print("do nothing")
+else:
+    os.makedirs(local_output_path)
+
+
+'''
 
 material_thresholds = {
     'M95' :  {"STRESS" : {"STD":3.0, "AVE": 20.0}, "ELONGATION" : {"STD":3.0, "AVE":20.0}},
@@ -26,5 +36,5 @@ def calculate_results(material, property, value):
     return color
 
 
-
+'''
 

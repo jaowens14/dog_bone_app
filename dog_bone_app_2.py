@@ -1,12 +1,21 @@
 import flet as ft
 import os 
 import stat
-from parse_html import parse_report
+import time
+import datetime
 import pandas as pd
 from PIL import ImageGrab
-import time
-
+import json
+from parse_html import parse_report
 from color_map import value_to_color
+from helper_functions import create_build_output_directory
+
+
+
+# TODO Save Initial files, screenshot, build report to cloud and locally
+# TODO Create build report
+# TODO Process data
+
 
 
 class Build(ft.UserControl):
@@ -16,21 +25,6 @@ class Build(ft.UserControl):
         self.elongation_threshold = ft.TextField(label='Elongation Threshold', value='', expand=1, read_only=True)
         self.stress_threshold =     ft.TextField(label='Stress Threshold',     value='', expand=1, read_only=True)
         self.previous_number = '0000'
-
-        ''' I took out the banner because it didn't seem to be that helpful
-        self.banner = ft.Banner(
-            open=False,
-            bgcolor=ft.colors.AMBER_100,
-            leading=ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, color=ft.colors.AMBER, size=40),
-            content=ft.Text(
-                "Oops, looks like you are trying to change the build number. What would you like to do?"
-            ),
-            actions=[
-                ft.TextButton("Change Build Number", on_click=self.change_number),
-                ft.TextButton("Ignore", on_click=self.ignore),
-            ],
-    )
-    '''
         
         self.material = ft.Dropdown(
             label="Build Material",
@@ -52,7 +46,6 @@ class Build(ft.UserControl):
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                     spacing=10,
                     controls=[
-                        #self.banner,
                         self.number,
                         self.material,
                         self.elongation_threshold,
@@ -65,31 +58,9 @@ class Build(ft.UserControl):
         return self.header
     
 
-
     def change_build_number(self, e):
-        print("current value in number field:")
         print(self.number.value)
-        #self.banner.open = True
         self.update()
-    '''
-    def change_number(self, e):
-        #self.banner.open = False
-        # update previous number
-        self.previous_number = self.number.value
-        # write previous number to current number
-        self.number.value = self.previous_number
-        self.material.value = ''
-        self.update()
-
-    def ignore(self, e):
-        #self.banner.open = False
-        # set current number to previous 
-        self.number.value = self.previous_number
-        self.update()
-    '''
-
-
-
 
     def select_material(self, e):
         material_thresholds = {
@@ -104,12 +75,9 @@ class Build(ft.UserControl):
         
 
 
-    
-
 class DogBone(ft.UserControl):
     def __init__(self, delete_func):
         super().__init__()
-        # self.file_picker =ft.FilePicker(on_result=self.process_file,visible=True)
         self.file_path =  ft.TextField(label='File',           value='', expand=3, read_only=True)
         self.number =     ft.TextField(label='Number',         value='', expand=1)
         self.length =     ft.TextField(label='Length [mm]',    value='', expand=2)
@@ -128,7 +96,6 @@ class DogBone(ft.UserControl):
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=10,
             controls=[
-                #self.file_picker,
                 self.file_path, 
                 self.number, 
                 self.length, 
@@ -193,21 +160,16 @@ class DogBone(ft.UserControl):
 
 
 class DogBoneApp(ft.UserControl):
-    def __init__(self, x, y, w, h):
+    def __init__(self):
         super().__init__()
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
         
     def build(self):
-        
+        self.report = {}
+        self.t = '' # time stamp
         self.message = ft.TextField(label="Message", value='', read_only=True, expand=2)
         self.header = Build()
         self.dog_bones = ft.Column()
         self.get_directory_dialog = ft.FilePicker(on_result=self.get_directory_result)
-        
-        # application's root control (i.e. "view") containing all other controls
         return ft.Column(
             spacing=10,
             width=1500,
@@ -236,8 +198,6 @@ class DogBoneApp(ft.UserControl):
         new_dog_bone = DogBone(self.remove_dog_bone)
         new_dog_bone.number.value = str(len(self.dog_bones.controls)+1)
         self.dog_bones.controls.append(new_dog_bone)
-        # this line will be important
-        #self.dog_bones.controls[1].elongation.bgcolor=ft.colors.RED
         self.update()
 
     def remove_dog_bone(self, dog_bone):
@@ -250,14 +210,19 @@ class DogBoneApp(ft.UserControl):
             self.message.value = "* Build Report Saved *"
             self.message.bgcolor = ft.colors.GREEN_400
             self.update()
-            self.capture_build(e)
+            self.t = datetime.datetime.fromtimestamp(time.time()).strftime('%m-%d-%Y')
+            self.build_output_path = create_build_output_directory(self.header.number.value)
+            self.capture_build_screenshot(e)
+            self.create_json_from_data(e)
+            self.save_html_files(e)
 
         else:
             self.message.value = "Please Lock All Dog Bones"
             self.message.bgcolor = ft.colors.AMBER
             self.update()
 
-    def capture_build(self, e):
+
+    def capture_build_screenshot(self, e):
         print("HERE")
         self.page.window_maximized = True
         self.page.update()
@@ -265,13 +230,44 @@ class DogBoneApp(ft.UserControl):
         screenshot = ImageGrab.grab()
         self.page.window_maximized = False
         self.page.update()
+        reportpath = os.path.join(self.build_output_path, str(self.header.number.value)+"_Report_"+str(self.t)+'.png')
+        screenshot.save(reportpath, 'PNG')
 
-        filepath = os.path.join(self.build_directory, "Report"+str(time.time()).strip('.')[0]+'.png')
-        print(filepath)
-        screenshot.save(filepath, 'PNG')
+
+    def create_json_from_data(self, e):
+
+        self.report['BUILD'] = {
+            "NUMBER": self.header.number.value,
+            "ELONGATION THRESHOLD": self.header.elongation_threshold.value,
+            "STRESS THRESHOLD": self.header.stress_threshold.value,
+            "MATERIAL": self.header.material.value,
+            }
+        dogbones = []
+        for db in self.dog_bones.controls:
+            dogbone = {
+                "File" :      db.file_path.value, 
+                "Number":     db.number.value,
+                "Length":     db.length.value,
+                "Width":      db.width.value,
+                "Thickness":  db.thickness.value,
+                "Elongation": db.elongation.value,
+                "Load":       db.stress.value,
+                }
+            dogbones.append(dogbone)
+        self.report['DOG_BONES'] = dogbones
+        json_output_file = os.path.join(self.build_output_path, str(self.header.number.value)+"_Report_"+str(self.t)+'.json')
+        print(json_output_file)
+        jf = open(json_output_file, 'x')
+        json.dump(self.report, jf, indent=4)
+        print(self.report)
+        print("Create json")
+
+    def save_html_files(self, e):
+        print("save html files")
+
 
     def review_build(self, e):
-        self.message.value = "Report Loaded"
+        self.message.value = "This is broken right now"
         self.message.bgcolor = ft.colors.GREEN_400
         print("review build")
         self.update()
@@ -287,14 +283,12 @@ class DogBoneApp(ft.UserControl):
                     self.message.value = e.path if e.path else "Cancelled!"
                     build_files = os.listdir(self.message.value)
                     build_files = [f for f in build_files if f.endswith('.html')]
-                    print(build_files)
                     # for every file in the folder, do stuff
                     for i in range(len(build_files)):
-                        print(build_files[i])
                         self.dog_bones.controls[i].file_path.value = build_files[i]
                         self.build_directory = e.path
                         self.data_file_path = os.path.join(e.path, str(build_files[i]))
-                        print(self.data_file_path)
+
                         self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value, self.data_file_path)
                         self.dog_bones.controls[i].update()
                     self.message.bgcolor = ft.colors.WHITE
@@ -315,8 +309,6 @@ class DogBoneApp(ft.UserControl):
                     self.message.value = "Looks Like There Was an Error Loading the Files. Try Again"
                     self.update()
 
-
-
             else:
                 self.message.value = "Please Lock All Dog Bones Before Selecting Build"
                 self.message.bgcolor = ft.colors.AMBER
@@ -330,13 +322,9 @@ def main(page: ft.Page):
     page.scroll = ft.ScrollMode.ALWAYS
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.update()
-    x = page.window_left
-    y = page.window_top 
-    w = page.window_max_width 
-    h = page.window_max_height
-    print(x,y,w,h)
+
     # create application instance
-    dog_bone_app = DogBoneApp(x,y,w,h)
+    dog_bone_app = DogBoneApp()
 
     # add application's root control to the page
     page.add(dog_bone_app)
