@@ -16,6 +16,12 @@ from helper_functions import create_build_output_directory
 # TODO Create build report
 # TODO Process data
 
+# TODO remove review button
+# TODO enforce build number matching
+# TODO Calculating thresholds, average and standard deviations
+# TODO Enforce dog bone number matching
+# TODO make sure color map is working
+
 
 
 class Build(ft.UserControl):
@@ -127,7 +133,7 @@ class DogBone(ft.UserControl):
         # write results to fields
         # write scores to colors
         # update dog bone
-        self.elongation.bgcolor = value_to_color(material, "STRESS", 2.0)
+        self.elongation.bgcolor = value_to_color(material, "STRESS", 19.0)
         self.update()
         print("processed dog bones")
     #########################################################################
