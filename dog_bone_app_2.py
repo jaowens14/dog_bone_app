@@ -9,7 +9,10 @@ import json
 from parse_html import parse_report
 from color_map import value_to_color
 from helper_functions import create_build_output_directory
+import shutil
 
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 
 # TODO Save Initial files, screenshot, build report to cloud and locally
@@ -221,6 +224,8 @@ class DogBoneApp(ft.UserControl):
             self.capture_build_screenshot(e)
             self.create_json_from_data(e)
             self.save_html_files(e)
+            time.sleep(0.1)
+            self.upload_build_directory(e)
 
         else:
             self.message.value = "Please Lock All Dog Bones"
@@ -269,7 +274,14 @@ class DogBoneApp(ft.UserControl):
         print("Create json")
 
     def save_html_files(self, e):
+        for db in self.dog_bones.controls:
+            src = os.path.join(self.build_directory, db.file_path.value)
+            dst = os.path.join(self.build_output_path, db.file_path.value)
+            shutil.copyfile(src, dst)
         print("save html files")
+
+    def upload_build_directory(self, e):
+        print("upload files")
 
 
     def review_build(self, e):
