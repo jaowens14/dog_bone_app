@@ -8,7 +8,7 @@ a = Analysis(
     ['dog_bone_app_2.py'],
     pathex=[],
     binaries=[],
-    datas=[('assets', 'assets')],
+    datas=[('assets\\readme.txt', '.\\\\assets')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -41,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='C:\\Users\\IMPACT~1\\AppData\\Local\\Temp\\d77529f4-84a7-45b5-8d87-6a37417a7a09',
+    version='C:\\Users\\IMPACT~1\\AppData\\Local\\Temp\\cabf2eac-9b0a-4ff6-9b0c-28d5bca74930',
 )
