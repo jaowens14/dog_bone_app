@@ -25,8 +25,12 @@ from pydrive.drive import GoogleDrive
 # TODO Calculating thresholds, average and standard deviations
 # TODO Enforce dog bone number matching
 # TODO make sure color map is working
-# TODO Grade dog bone based on dog bone number motherfucker
+# TODO Grade dog bone based on dog bone number
+# TODO Grade Force and Dimension 
 
+# input directory is selected
+# output directory is 
+# cred's directory is 
 
 
 

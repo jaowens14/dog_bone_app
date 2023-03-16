@@ -47,7 +47,7 @@ def main():
             token.write(creds.to_json())
 
     try:
-        service = build('drive', 'v3', credentials=creds)
+        service = build('drive', 'v3', credentials=creds, static_discovery=False)
 
         # Call the Drive v3 API
         results = service.files().list(
@@ -78,7 +78,7 @@ def create_folder(folder_name):
 
     try:
         # create drive api client
-        service = build('drive', 'v3', credentials=creds)
+        service = build('drive', 'v3', credentials=creds, static_discovery=False)
         file_metadata = {
             'name': folder_name,
             'mimeType': 'application/vnd.google-apps.folder',
@@ -109,7 +109,7 @@ def upload_to_folder(folder_id, file_path):
 
     try:
         # create drive api client
-        service = build('drive', 'v3', credentials=creds)
+        service = build('drive', 'v3', credentials=creds, static_discovery=False)
         file_name = str(os.path.basename(os.path.normpath(file_path)))
 
         file_metadata = {
@@ -140,12 +140,16 @@ def upload_build(path):
 
     log.write("os.path.abspath(path.join(path.dirname(__file__), 'assets'))")
     log.write('\n')
+    f = os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets'))
     log.write(os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets')))
     log.write('\n')
     log.write("cred path")
     log.write('\n')
     log.write(cred_path)
     log.write('\n')
+    log.write("result of os.path.exsists")
+    log.write('\n')
+    log.write(str(os.path.exists(f)))
     log.close() 
     build_number = os.path.basename(os.path.normpath(path))
     build_folder_id = create_folder(build_number)
