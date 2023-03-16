@@ -25,6 +25,8 @@ from pydrive.drive import GoogleDrive
 # TODO Calculating thresholds, average and standard deviations
 # TODO Enforce dog bone number matching
 # TODO make sure color map is working
+# TODO Grade dog bone based on dog bone number motherfucker
+
 
 
 
@@ -288,7 +290,7 @@ class DogBoneApp(ft.UserControl):
             print("Create json")
         except FileExistsError:
             self.message.bgcolor = ft.colors.AMBER
-            self.message.value = "Looks like some of those files already exist. Check your local_output directory."
+            self.message.value = "Looks like some of those files already exist. Check your dog_bone_app_local_output directory."
             self.update()
 
 

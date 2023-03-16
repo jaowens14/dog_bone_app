@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import os
-
+from os import path
 import google.auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -11,6 +11,9 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.http import MediaFileUpload
 
 
+cred_path = path.abspath(path.join(path.dirname(__file__), 'assets','credentials.json'))
+token_path = path.abspath(path.join(path.dirname(__file__), 'assets','token.json'))
+settings_path = path.abspath(path.join(path.dirname(__file__), 'assets','settings.yaml'))
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly',
@@ -22,22 +25,25 @@ def main():
     """Shows basic usage of the Drive v3 API.
     Prints the names and ids of the first 10 files the user has access to.
     """
+
+
+
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    if os.path.exists('.\\assets\\token.json'):
-        creds = Credentials.from_authorized_user_file('.\\assets\\token.json', SCOPES)
+    if os.path.exists(token_path):
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                '.\\assets\\credentials.json', SCOPES)
+                cred_path, SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
-        with open('.\\assets\\token.json', 'w') as token:
+        with open(token_path, 'w') as token:
             token.write(creds.to_json())
 
     try:
@@ -67,7 +73,7 @@ def create_folder(folder_name):
     TODO(developer) - See https://developers.google.com/identity
     for guides on implementing OAuth2 for the application.
     """
-    creds = Credentials.from_authorized_user_file('.\\assets\\token.json', SCOPES)
+    creds = Credentials.from_authorized_user_file(token_path, SCOPES)
 
 
     try:
@@ -99,7 +105,7 @@ def upload_to_folder(folder_id, file_path):
     TODO(developer) - See https://developers.google.com/identity
     for guides on implementing OAuth2 for the application.
     """
-    creds = Credentials.from_authorized_user_file('.\\assets\\token.json', SCOPES)
+    creds = Credentials.from_authorized_user_file(token_path, SCOPES)
 
     try:
         # create drive api client
@@ -127,8 +133,23 @@ def upload_to_folder(folder_id, file_path):
 
 
 def upload_build(path):
+
+
+    log = open(os.path.join(path,'app_log.txt'), 'x')
+    #log = open(path.abspath(path.join(path.dirname(__file__), 'assets','app_log.txt')))
+
+    log.write("os.path.abspath(path.join(path.dirname(__file__), 'assets'))")
+    log.write('\n')
+    log.write(os.path.abspath(os.path.join(os.path.dirname(__file__), 'assets')))
+    log.write('\n')
+    log.write("cred path")
+    log.write('\n')
+    log.write(cred_path)
+    log.write('\n')
+    log.close() 
     build_number = os.path.basename(os.path.normpath(path))
     build_folder_id = create_folder(build_number)
+    print("This is the path in the google file: ", path)
     for f in os.listdir(path):
         f = os.path.join(path, f)
         upload_to_folder(build_folder_id, f)

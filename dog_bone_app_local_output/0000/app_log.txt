@@ -1,0 +1,4 @@
+os.path.abspath(path.join(path.dirname(__file__), 'assets'))
+C:\Users\Impact Tester\Documents\python_application\assets
+cred path
+C:\Users\Impact Tester\Documents\python_application\assets\credentials.json
