@@ -7,7 +7,7 @@ import pandas as pd
 from PIL import ImageGrab
 import json
 from parse_html import parse_report
-from color_map import value_to_color
+from color_map import grade_dog_bone
 from helper_functions import create_build_output_directory
 from google_drive_autho import upload_build
 import shutil
@@ -101,6 +101,7 @@ class DogBone(ft.UserControl):
         self.width =      ft.TextField(label='Width [mm]',     value='', expand=25)
         self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=25)
         self.elongation = ft.TextField(label='Elongation [%]', value='', expand=25, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
+        self.force      = ft.TextField(label='Force [N]' ,     value='', expand=25, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
         self.stress =     ft.TextField(label='Stress [MPA]',   value='', expand=25, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
         self.delete_func = delete_func
         self.delete =     ft.IconButton(ft.icons.DELETE, on_click=self.delete_dog_bone)
@@ -120,6 +121,7 @@ class DogBone(ft.UserControl):
                 self.width, 
                 self.thickness, 
                 self.elongation, 
+                self.force,
                 self.stress,
                 self.lock,
                 self.unlock,
@@ -131,22 +133,44 @@ class DogBone(ft.UserControl):
     #########################################################################
     # data processing area
 
-    def process_dog_bone(self, e, orientation, material, data_file_path):
+    def process_dog_bone(self, e, dog_bone_number, material, data_file_path):
+        
+        length    = self.length.value
+        width     = self.width.value
+        thickness = self.thickness.value
+        cross_sectional_area = float(thickness)*float(width)
         # load the data
         os.chmod(data_file_path, stat.S_IRWXO)
         # open the file
         report = open(data_file_path, 'r')
         # get the data out of the html
-        data = parse_report(report)
+        sample_data = parse_report(report)
         # REMEMBER the columns are : columns=['Reading Number', 'Load [N]', 'Travel [mm]', 'Time [sec]'])
-        print(data)
+        sample_data['Load [N]'] = -sample_data['Load [N]'].astype(float)
+        sample_data['Travel [mm]'] = sample_data['Travel [mm]'].astype(float)
+        max_load = sample_data['Load [N]'].max()
+        travel_at_max_load = max(sample_data.loc[sample_data["Load [N]"] == max_load, 'Travel [mm]'])
+        percent_elongation = round(((travel_at_max_load/25) * 100),2)
+        engineering_stress = round(max_load/cross_sectional_area, 4)
+        self.stress.value = engineering_stress
+        self.elongation.value = percent_elongation
         # calculate the values, results
         # score the results
         # write results to fields
         # write scores to colors
         # update dog bone
-        self.elongation.bgcolor = value_to_color(material, "STRESS", 19.0)
+        print("WE made it right before grade")
+        colors = grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, engineering_stress)
+        print(colors)
+        self.length.bgcolor = colors['Length']
+        self.width.bgcolor = colors['Width']
+        self.thickness.bgcolor = colors['Thickness']
+        self.stress.bgcolor = colors['Force']
+        self.elongation.bgcolor = colors['Elongation']
+        print(colors)
+
         self.update()
+            
         print("processed dog bones")
     #########################################################################
     
@@ -192,7 +216,7 @@ class DogBoneApp(ft.UserControl):
         self.get_directory_dialog = ft.FilePicker(on_result=self.get_directory_result)
         return ft.Column(
             spacing=10,
-            width=1500,
+            width=2000,
             controls=[
                 self.header,
                 ft.Row(
@@ -343,8 +367,13 @@ class DogBoneApp(ft.UserControl):
                         self.dog_bones.controls[i].file_path.value = build_files[i]
                         self.build_directory = e.path
                         self.data_file_path = os.path.join(e.path, str(build_files[i]))
-
-                        self.dog_bones.controls[i].process_dog_bone(e, self.dog_bones.controls[i].number.value, self.header.material.value, self.data_file_path)
+                        
+                        try:
+                            self.dog_bones.controls[i].process_dog_bone(e, self.dog_bones.controls[i].number.value, self.header.material.value, self.data_file_path)
+                        except ValueError:
+                            self.message.bgcolor = ft.colors.AMBER
+                            self.message.value = "It looks like some values were left blank"
+                            self.update()
 
                         self.dog_bones.controls[i].update()
                     self.message.bgcolor = ft.colors.WHITE

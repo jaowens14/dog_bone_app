@@ -1,25 +1,24 @@
 import pandas as pd
 import numpy as np
 import flet as ft
-
+from lookup_table import lookup
 #  |red------ -2 std---yellow-- -std      average     +std    +2 std
 
 
+def grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, force):    
+    averages = lookup(material, 'AVE', dog_bone_number)
+    stds     = lookup(material, 'STD', dog_bone_number)
+    sample = {'Length': length, 'Width': width, 'Thickness': thickness, 'Force': force, 'Elongation': percent_elongation}
+    output = {}
+    for k,v in sample.items():
+        output[k] = color_map(float(v), float(averages[k]), float(stds[k]), float(2*stds[k]))
+    return output
 
-material_thresholds = {
-    'M95' :  {"STRESS" : {"STD":3.0, "AVE": 20.0}, "ELONGATION" : {"STD":3.0, "AVE":20.0}},
-    'M88' :  {"STRESS" : {"STD":3.0, "AVE": 20.0}, "ELONGATION" : {"STD":3.0, "AVE":20.0}},
-    'PA12' : {"STRESS" : {"STD":3.0, "AVE": 20.0}, "ELONGATION" : {"STD":3.0, "AVE":20.0}},
-    'PA11' : {"STRESS" : {"STD":3.0, "AVE": 20.0}, "ELONGATION" : {"STD":3.0, "AVE":20.0}},
-    }
-
-
-def value_to_color(material, property, value):
-    #print(material_thresholds["M88"]["STRESS"]["STD"])
-    ave = material_thresholds[material][property]["AVE"]
-    std = ave - material_thresholds[material][property]["STD"]
-    std2 = std - material_thresholds[material][property]["STD"]
-
+def color_map(value, ave, std, std2):
+    print(value)
+    print(ave)
+    print(std)
+    print(std2)
     if value > ave:
         print("value is at or above average, set to green")
         color = ft.colors.GREEN
@@ -34,7 +33,6 @@ def value_to_color(material, property, value):
         color = ft.colors.DEEP_PURPLE
     else:
         print("error in color map")
-    
     return color
 
 
