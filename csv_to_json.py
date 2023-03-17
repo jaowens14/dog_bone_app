@@ -1,73 +1,29 @@
 import pandas as pd
+from os import path
 
-lt = pd.read_csv('.\\lt3.csv').transpose()
-print(lt)
+def lookup(material, statistic, dog_bone_number):
+    dog_bone_number = int(dog_bone_number)
+    lt_path = path.abspath(path.join(path.dirname(__file__), 'assets','lt4.csv'))
+    lt = pd.read_csv(lt_path)
+    props = lt.loc[(lt['Material'] == material) & (lt['Statistic'] ==statistic) & (lt['Dog Bone Number'] == dog_bone_number)]
 
-header = lt.loc['Material_Statistic']
-print("THis is the header", header)
-lt = lt.drop('Material_Statistic')
-for index, row in lt.iterrows():
-    row = pd.concat([header, row], axis=1).transpose()
-    val = row['M95_AVE']
-    
-    print(row)
-#print(lt)
-'''
-lt = {
-    'M95': {
-    '1':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '2':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '3':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '4':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '5':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '6':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '7':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '8':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '9':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    },
-    'M88': {
-    '1':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '2':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '3':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '4':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '5':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '6':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '7':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '8':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '9':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    },
-    'PA12': {
-    '1':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '2':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '3':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '4':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '5':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '6':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '7':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '8':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '9':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    },
-    'PA11': {
-    '1':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '2':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '3':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '4':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '5':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '6':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '7':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '8':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    '9':{'L':{'AVE':75, 'STD':0.1}, 'W':{'AVE':4, 'STD':0.1}, 'H':{'AVE':2, 'STD':0.1}, 'F':{'AVE':50, 'STD':0.1}, 'E':{'AVE':20, 'STD':0.1}},
-    },
-}
-
-print(lt['M88']['1']['L']['AVE'])
-
-for mat in lt:
-    for num in lt[mat]:
-        for prop in lt[mat][num]:
-            for stat in lt[mat][num][prop]:
-
-                lt[mat][num][prop][stat] = 1
-'''
-
-                
+    mat =  props.iloc[0]["Material"]
+    stat = props.iloc[0]["Statistic"]
+    num =  props.iloc[0]["Dog Bone Number"]
+    L =    props.iloc[0]["L"]
+    W =    props.iloc[0]["W"]
+    H =    props.iloc[0]["H"]
+    F =    props.iloc[0]["F"]
+    E =    props.iloc[0]["E"]
+    data = {
+        "Material": mat, 
+        "Statistic":stat, 
+        "Dog Bone Number":num, 
+        "Length": L,
+        "Width": W,
+        "Height": H,
+        "Force": F,
+        "Elongation":E,
+        }
+    # {'Material': 'M95', 'Statistic': 'AVE', 'Dog Bone Number': 4, 'Length': 75.45857143, 'Width': 4.218571429, 'Height': 2.153571429, 'Force': 68.46428571, 'Elongation': 17.38857143}
+    return data
