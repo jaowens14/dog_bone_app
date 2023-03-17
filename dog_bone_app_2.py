@@ -16,14 +16,14 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 
-# TODO Save Initial files, screenshot, build report to cloud and locally
-# TODO Create build report
+# DONE Save Initial files, screenshot, build report to cloud and locally
+# DONE Create build report
 # TODO Process data
 
-# TODO remove review button
-# TODO enforce build number matching
+# DONE remove review button
+# DONE enforce build number matching
 # TODO Calculating thresholds, average and standard deviations
-# TODO Enforce dog bone number matching
+# DONE Enforce dog bone number matching
 # TODO make sure color map is working
 # TODO Grade dog bone based on dog bone number
 # TODO Grade Force and Dimension 
@@ -94,13 +94,14 @@ class Build(ft.UserControl):
 class DogBone(ft.UserControl):
     def __init__(self, delete_func):
         super().__init__()
-        self.file_path =  ft.TextField(label='File',           value='', expand=3, read_only=True)
-        self.number =     ft.TextField(label='Number',         value='', expand=1)
-        self.length =     ft.TextField(label='Length [mm]',    value='', expand=2)
-        self.width =      ft.TextField(label='Width [mm]',     value='', expand=2)
-        self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=2)
-        self.elongation = ft.TextField(label='Elongation [%]', value='', expand=2, read_only=True)
-        self.stress =     ft.TextField(label='Stress [MPA]',   value='', expand=2, read_only=True)
+        self.entry_number=ft.TextButton(text='',                         expand=2)
+        self.file_path =  ft.TextField(label='File',           value='', expand=30, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
+        self.number =     ft.TextField(label='Number',         value='', expand=15, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
+        self.length =     ft.TextField(label='Length [mm]',    value='', expand=25)
+        self.width =      ft.TextField(label='Width [mm]',     value='', expand=25)
+        self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=25)
+        self.elongation = ft.TextField(label='Elongation [%]', value='', expand=25, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
+        self.stress =     ft.TextField(label='Stress [MPA]',   value='', expand=25, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
         self.delete_func = delete_func
         self.delete =     ft.IconButton(ft.icons.DELETE, on_click=self.delete_dog_bone)
         self.lock =       ft.IconButton(ft.icons.LOCK_OPEN_OUTLINED, on_click=self.lock_dog_bone)
@@ -112,6 +113,7 @@ class DogBone(ft.UserControl):
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=10,
             controls=[
+                self.entry_number,
                 self.file_path, 
                 self.number, 
                 self.length, 
@@ -129,7 +131,7 @@ class DogBone(ft.UserControl):
     #########################################################################
     # data processing area
 
-    def process_dog_bone(self, e, material, data_file_path):
+    def process_dog_bone(self, e, orientation, material, data_file_path):
         # load the data
         os.chmod(data_file_path, stat.S_IRWXO)
         # open the file
@@ -137,7 +139,7 @@ class DogBone(ft.UserControl):
         # get the data out of the html
         data = parse_report(report)
         # REMEMBER the columns are : columns=['Reading Number', 'Load [N]', 'Travel [mm]', 'Time [sec]'])
-
+        print(data)
         # calculate the values, results
         # score the results
         # write results to fields
@@ -225,7 +227,7 @@ class DogBoneApp(ft.UserControl):
 
     def add_clicked(self, e):
         new_dog_bone = DogBone(self.remove_dog_bone)
-        new_dog_bone.number.value = str(len(self.dog_bones.controls)+1)
+        new_dog_bone.entry_number.text = str(len(self.dog_bones.controls)+1)
         self.dog_bones.controls.append(new_dog_bone)
         self.update()
 
@@ -314,10 +316,17 @@ class DogBoneApp(ft.UserControl):
             self.update()        
         print("upload files")
 
+
+
     def get_directory_result(self, e: ft.FilePickerResultEvent):
         if len(self.dog_bones.controls) == 0:
             self.message.value = "Please Add Some Dog Bones Before Selecting Build"
             self.message.bgcolor = ft.colors.AMBER
+            self.update()
+        elif self.header.number.value != os.path.basename(os.path.normpath(e.path)):
+            self.message.value = "The Selected Directory Does Not Match the Build Number"
+            self.message.bgcolor = ft.colors.AMBER
+            print(os.path.basename(os.path.normpath(e.path)))
             self.update()
         else:
             if all([db.unlock.visible for db in self.dog_bones.controls]) == True:
@@ -327,11 +336,16 @@ class DogBoneApp(ft.UserControl):
                     build_files = [f for f in build_files if f.endswith('.html')]
                     # for every file in the folder, do stuff
                     for i in range(len(build_files)):
+                        db_file = build_files[i]
+                        build, dog_bone_number = db_file.strip('.html').split('_')
+                        dog_bone_number = int(dog_bone_number)
+                        self.dog_bones.controls[i].number.value = dog_bone_number
                         self.dog_bones.controls[i].file_path.value = build_files[i]
                         self.build_directory = e.path
                         self.data_file_path = os.path.join(e.path, str(build_files[i]))
 
-                        self.dog_bones.controls[i].process_dog_bone(e, self.header.material.value, self.data_file_path)
+                        self.dog_bones.controls[i].process_dog_bone(e, self.dog_bones.controls[i].number.value, self.header.material.value, self.data_file_path)
+
                         self.dog_bones.controls[i].update()
                     self.message.bgcolor = ft.colors.WHITE
                     self.message.update()
