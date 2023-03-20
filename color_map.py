@@ -17,15 +17,15 @@ def grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_
 def color_map(value, ave, std, std2):
     print(value)
 
-    if value <= ave+std and value >= ave-std:
+    if value <= ave+2*std and value >= ave-2*std:
         print("value within 1 STD set to green")
         color = ft.colors.GREEN_300
 
-    elif value <= ave+std2 and value >= ave-std2:
+    elif value <= ave+2*std2 and value >= ave-2*std2:
         print("Value within 2 STD set to yellow")
         color = ft.colors.AMBER_300
 
-    elif value >= ave+std2 or value <= ave-std2:
+    elif value >= ave+2*std2 or value <= ave-2*std2:
         print("value is below 2 std or above 2 std, set to red")
         color = ft.colors.RED_300
     else:

@@ -3,7 +3,7 @@ from os import path
 
 def lookup(material, statistic, dog_bone_number):
     dog_bone_number = int(dog_bone_number)
-    lt_path = path.abspath(path.join(path.dirname(__file__), 'assets','lt4.csv'))
+    lt_path = path.abspath(path.join(path.dirname(__file__), 'assets','lt5.csv'))
     lt = pd.read_csv(lt_path)
     props = lt.loc[(lt['Material'] == material) & (lt['Statistic'] ==statistic) & (lt['Dog Bone Number'] == dog_bone_number)]
 

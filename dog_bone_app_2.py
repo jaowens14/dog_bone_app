@@ -16,12 +16,15 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 
-# TODO CHANGE STRESS TO FORCE
+# TODO Look up dog bone based on entered number
+# TODO Double STd values
+
+# DONE CHANGE STRESS TO FORCE
 # TODO CHECK UNITS
 # DONE ADD LOADING SCREEEN WHEN UPLOADING
 # DONE FIX COLORS
 # DONE MAKE DIMENSION CHECK FOR OVER AND UNDER SIZE
-# TODO MAKE SCREEN SHOT WORK - takes screen cap of active monitor
+# DONE MAKE SCREEN SHOT WORK - takes screen cap of active monitor
 
 # DONE Save Initial files, screenshot, build report to cloud and locally
 # DONE Create build report
