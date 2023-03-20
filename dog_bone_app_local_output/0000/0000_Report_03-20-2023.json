@@ -1,9 +1,54 @@
 {
     "BUILD": {
         "NUMBER": "0000",
-        "ELONGATION THRESHOLD": "",
-        "STRESS THRESHOLD": "",
-        "MATERIAL": null
+        "MATERIAL": "PA12",
+        "NOTES": ""
     },
-    "DOG_BONES": []
+    "DOG_BONES": [
+        {
+            "File": "0000_1.html",
+            "Number": 1,
+            "Length": "75",
+            "Width": "4",
+            "Thickness": "2",
+            "Elongation": 64.88,
+            "Load": 29.0
+        },
+        {
+            "File": "0000_2.html",
+            "Number": 2,
+            "Length": "75",
+            "Width": "4",
+            "Thickness": "2",
+            "Elongation": 64.88,
+            "Load": 29.0
+        },
+        {
+            "File": "0000_3.html",
+            "Number": 3,
+            "Length": "75",
+            "Width": "4",
+            "Thickness": "2",
+            "Elongation": 64.88,
+            "Load": 29.0
+        },
+        {
+            "File": "0000_4.html",
+            "Number": 4,
+            "Length": "75",
+            "Width": "4",
+            "Thickness": "2",
+            "Elongation": 64.88,
+            "Load": 29.0
+        },
+        {
+            "File": "0000_6.html",
+            "Number": 6,
+            "Length": "75",
+            "Width": "4",
+            "Thickness": "2",
+            "Elongation": 64.88,
+            "Load": 29.0
+        }
+    ]
 }

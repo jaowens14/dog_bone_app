@@ -130,7 +130,7 @@ class DogBone(ft.UserControl):
                 self.thickness, 
                 self.elongation, 
                 self.force,
-                self.stress,
+                #self.stress,
                 self.lock,
                 self.unlock,
                 self.delete,
@@ -159,8 +159,11 @@ class DogBone(ft.UserControl):
         max_load = sample_data['Load [N]'].max()
         travel_at_max_load = max(sample_data.loc[sample_data["Load [N]"] == max_load, 'Travel [mm]'])
         percent_elongation = round(((travel_at_max_load/25) * 100),2)
-        engineering_stress = round(max_load/cross_sectional_area, 4)
-        self.stress.value = engineering_stress
+
+        #engineering_stress = round(max_load/cross_sectional_area, 4)
+        max_force = max_load
+        self.force.value = max_force
+
         self.elongation.value = percent_elongation
         # calculate the values, results
         # score the results
@@ -168,13 +171,13 @@ class DogBone(ft.UserControl):
         # write scores to colors
         # update dog bone
         print("WE made it right before grade")
-        colors = grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, engineering_stress)
+        colors = grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, max_force)
         print("GRADE")
         print(colors)
         self.length.bgcolor = colors['Length']
         self.width.bgcolor = colors['Width']
         self.thickness.bgcolor = colors['Thickness']
-        self.stress.bgcolor = colors['Force']
+        self.force.bgcolor = colors['Force']
         self.elongation.bgcolor = colors['Elongation']
         print(colors)
 
@@ -226,7 +229,7 @@ class DogBoneApp(ft.UserControl):
         self.get_directory_dialog = ft.FilePicker(on_result=self.get_directory_result)
         return ft.Column(
             spacing=10,
-            width=2000,
+            width=1600,
             controls=[
                 self.header,
                 ft.Row(
@@ -242,7 +245,7 @@ class DogBoneApp(ft.UserControl):
                 ft.Row(
                     controls=[
                         ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN_300, on_click=self.save_build),
-                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff, bgcolor=ft.colors.GREEN_300),
+                        #ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff, bgcolor=ft.colors.GREEN_300),
                         self.notes,
                         self.get_directory_dialog,
                     ],
@@ -315,9 +318,10 @@ class DogBoneApp(ft.UserControl):
         try:
             self.report['BUILD'] = {
                 "NUMBER": self.header.number.value,
-                "ELONGATION THRESHOLD": self.header.elongation_threshold.value,
-                "STRESS THRESHOLD": self.header.stress_threshold.value,
+                #"ELONGATION THRESHOLD": self.header.elongation_threshold.value,
+                #"STRESS THRESHOLD": self.header.stress_threshold.value,
                 "MATERIAL": self.header.material.value,
+                "NOTES": self.notes.value,
                 }
             dogbones = []
             for db in self.dog_bones.controls:
@@ -328,7 +332,7 @@ class DogBoneApp(ft.UserControl):
                     "Width":      db.width.value,
                     "Thickness":  db.thickness.value,
                     "Elongation": db.elongation.value,
-                    "Load":       db.stress.value,
+                    "Load":       db.force.value,
                     }
                 dogbones.append(dogbone)
             self.report['DOG_BONES'] = dogbones
