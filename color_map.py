@@ -16,25 +16,23 @@ def grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_
 
 def color_map(value, ave, std, std2):
     print(value)
-    print(ave)
-    print(std)
-    print(std2)
-    if value > ave:
-        print("value is at or above average, set to green")
-        color = ft.colors.GREEN
-    elif std < value < ave:
-        print("Value is below average but above 1 std, set to yellow")
-        color = ft.colors.AMBER
-    elif std2 < value < std:
-        print("value is below 1 std but above 2 std, set to red")
-        color = ft.colors.RED
-    elif value < std2:
-        print("value is below 2 std, send warning or dark red?")
-        color = ft.colors.DEEP_PURPLE
+
+    if value <= ave+std and value >= ave-std:
+        print("value within 1 STD set to green")
+        color = ft.colors.GREEN_300
+
+    elif value <= ave+std2 and value >= ave-std2:
+        print("Value within 2 STD set to yellow")
+        color = ft.colors.AMBER_300
+
+    elif value >= ave+std2 or value <= ave-std2:
+        print("value is below 2 std or above 2 std, set to red")
+        color = ft.colors.RED_300
     else:
         print("error in color map")
+        color = ft.colors.PURPLE_300
     return color
 
 
 
-
+#grade_dog_bone("M95", "1", "75", "4", "2", "20", "20")   

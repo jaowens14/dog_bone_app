@@ -16,17 +16,24 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 
+# TODO CHANGE STRESS TO FORCE
+# TODO CHECK UNITS
+# DONE ADD LOADING SCREEEN WHEN UPLOADING
+# DONE FIX COLORS
+# DONE MAKE DIMENSION CHECK FOR OVER AND UNDER SIZE
+# TODO MAKE SCREEN SHOT WORK - takes screen cap of active monitor
+
 # DONE Save Initial files, screenshot, build report to cloud and locally
 # DONE Create build report
-# TODO Process data
+# DONE Process data
 
 # DONE remove review button
 # DONE enforce build number matching
-# TODO Calculating thresholds, average and standard deviations
+# DONE Calculating thresholds, average and standard deviations
 # DONE Enforce dog bone number matching
-# TODO make sure color map is working
-# TODO Grade dog bone based on dog bone number
-# TODO Grade Force and Dimension 
+# DONE make sure color map is working
+# DONE Grade dog bone based on dog bone number
+# DONE Grade Force and Dimension 
 
 # input directory is selected
 # output directory is 
@@ -51,6 +58,7 @@ class Build(ft.UserControl):
                 ft.dropdown.Option("M88"),
             ],
             on_change=self.select_material,
+            expand=2
         )
 
 
@@ -64,8 +72,8 @@ class Build(ft.UserControl):
                     controls=[
                         self.number,
                         self.material,
-                        self.elongation_threshold,
-                        self.stress_threshold,
+                        #self.elongation_threshold,
+                        #self.stress_threshold,
                     ],
                 ),
             ft.Divider(thickness=5, color=ft.colors.BLUE_GREY)
@@ -161,6 +169,7 @@ class DogBone(ft.UserControl):
         # update dog bone
         print("WE made it right before grade")
         colors = grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, engineering_stress)
+        print("GRADE")
         print(colors)
         self.length.bgcolor = colors['Length']
         self.width.bgcolor = colors['Width']
@@ -207,6 +216,7 @@ class DogBoneApp(ft.UserControl):
         
     def build(self):
         self.report = {}
+        self.progress_bar = ft.ProgressBar(visible=False)
         self.t = '' # time stamp
         self.message = ft.TextField(label="Message", value='', read_only=True, expand=2)
         self.notes   = ft.TextField(label="Notes", value='', expand=1)
@@ -228,10 +238,11 @@ class DogBoneApp(ft.UserControl):
                 ),
                 self.dog_bones,
                 ft.Divider(thickness=5, color=ft.colors.BLUE_GREY),
+                self.progress_bar,
                 ft.Row(
                     controls=[
-                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN, on_click=self.save_build),
-                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff),
+                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN_300, on_click=self.save_build),
+                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff, bgcolor=ft.colors.GREEN_300),
                         self.notes,
                         self.get_directory_dialog,
                     ],
@@ -240,7 +251,7 @@ class DogBoneApp(ft.UserControl):
         )
 
     def print_stuff(self, e):
-        self.message.bgcolor = ft.colors.AMBER
+        self.message.bgcolor = ft.colors.AMBER_300
         self.update()
         time.sleep(1.0)
 
@@ -262,20 +273,29 @@ class DogBoneApp(ft.UserControl):
     def save_build(self, e):
         # all of the dog bone unlocks need to be visible true in order to save a build
         if all([db.unlock.visible for db in self.dog_bones.controls]) == True:
-            self.message.value = "* Build Report Saved *"
-            self.message.bgcolor = ft.colors.GREEN_400
-            self.update()
+            #self.message.value = "* Build Report Saved *"
+            #self.message.bgcolor = ft.colors.GREEN_400
+            #self.update()
             self.t = datetime.datetime.fromtimestamp(time.time()).strftime('%m-%d-%Y')
             self.build_output_path = create_build_output_directory(self.header.number.value)
             self.capture_build_screenshot(e)
             self.create_json_from_data(e)
             self.save_html_files(e)
             time.sleep(0.1)
+            self.progress_bar.visible=True
+            self.message.value = "Uploading Build Files. Please Wait."
+            self.message.bgcolor = ft.colors.AMBER_300
+            self.update()
             self.upload_build_directory(e)
+            self.message.value = "Upload Complete."
+            self.message.bgcolor = ft.colors.GREEN_300
+            self.progress_bar.visible=False
+            self.update()
+        
 
         else:
             self.message.value = "Please Lock All Dog Bones"
-            self.message.bgcolor = ft.colors.AMBER
+            self.message.bgcolor = ft.colors.AMBER_300
             self.update()
 
 
@@ -319,7 +339,7 @@ class DogBoneApp(ft.UserControl):
             print(self.report)
             print("Create json")
         except FileExistsError:
-            self.message.bgcolor = ft.colors.AMBER
+            self.message.bgcolor = ft.colors.AMBER_300
             self.message.value = "Looks like some of those files already exist. Check your dog_bone_app_local_output directory."
             self.update()
 
@@ -335,7 +355,7 @@ class DogBoneApp(ft.UserControl):
         try:
             upload_build(self.build_output_path)
         except Exception as e:
-            self.message.bgcolor = ft.colors.AMBER
+            self.message.bgcolor = ft.colors.AMBER_300
             self.message.value = "UPLOAD ERROR"+str(e)
             self.update()        
         print("upload files")
@@ -345,11 +365,11 @@ class DogBoneApp(ft.UserControl):
     def get_directory_result(self, e: ft.FilePickerResultEvent):
         if len(self.dog_bones.controls) == 0:
             self.message.value = "Please Add Some Dog Bones Before Selecting Build"
-            self.message.bgcolor = ft.colors.AMBER
+            self.message.bgcolor = ft.colors.AMBER_300
             self.update()
         elif self.header.number.value != os.path.basename(os.path.normpath(e.path)):
             self.message.value = "The Selected Directory Does Not Match the Build Number"
-            self.message.bgcolor = ft.colors.AMBER
+            self.message.bgcolor = ft.colors.AMBER_300
             print(os.path.basename(os.path.normpath(e.path)))
             self.update()
         else:
@@ -371,7 +391,7 @@ class DogBoneApp(ft.UserControl):
                         try:
                             self.dog_bones.controls[i].process_dog_bone(e, self.dog_bones.controls[i].number.value, self.header.material.value, self.data_file_path)
                         except ValueError:
-                            self.message.bgcolor = ft.colors.AMBER
+                            self.message.bgcolor = ft.colors.AMBER_300
                             self.message.value = "It looks like some values were left blank"
                             self.update()
 
@@ -381,22 +401,22 @@ class DogBoneApp(ft.UserControl):
                     self.update()
 
                 except IndexError:
-                    self.message.bgcolor = ft.colors.AMBER
+                    self.message.bgcolor = ft.colors.AMBER_300
                     self.message.value = "Different Number of Dog Bones vs Dog Bone Files"
                     self.update()
                 except KeyError:
-                    self.message.bgcolor = ft.colors.AMBER
+                    self.message.bgcolor = ft.colors.AMBER_300
                     self.message.value = "Make Sure to Select a Material"
                     self.update()
                 
                 except FileNotFoundError:
-                    self.message.bgcolor = ft.colors.AMBER
+                    self.message.bgcolor = ft.colors.AMBER_300
                     self.message.value = "Looks Like There Was an Error Loading the Files. Try Again"
                     self.update()
 
             else:
                 self.message.value = "Please Lock All Dog Bones Before Selecting Build"
-                self.message.bgcolor = ft.colors.AMBER
+                self.message.bgcolor = ft.colors.AMBER_300
                 self.update()
 
 
