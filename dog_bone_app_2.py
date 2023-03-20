@@ -107,7 +107,7 @@ class DogBone(ft.UserControl):
         super().__init__()
         self.entry_number=ft.TextButton(text='',                         expand=2)
         self.file_path =  ft.TextField(label='File',           value='', expand=30, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
-        self.number =     ft.TextField(label='Number',         value='', expand=15, read_only=True, bgcolor=ft.colors.BLUE_GREY_50)
+        self.number =     ft.TextField(label='Number',         value='', expand=15)
         self.length =     ft.TextField(label='Length [mm]',    value='', expand=25)
         self.width =      ft.TextField(label='Width [mm]',     value='', expand=25)
         self.thickness =  ft.TextField(label='Thickness [mm]', value='', expand=25)
@@ -125,7 +125,7 @@ class DogBone(ft.UserControl):
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=10,
             controls=[
-                self.entry_number,
+                #self.entry_number,
                 self.file_path, 
                 self.number, 
                 self.length, 
@@ -379,32 +379,37 @@ class DogBoneApp(ft.UserControl):
             self.message.bgcolor = ft.colors.AMBER_300
             print(os.path.basename(os.path.normpath(e.path)))
             self.update()
+        elif all([False for db in self.dog_bones.controls if db.number.value !='']):
+            self.message.value = "Make sure to enter the dog bone numbers"
+            self.message.bgcolor = ft.colors.AMBER_300
+            self.update()
         else:
             if all([db.unlock.visible for db in self.dog_bones.controls]) == True:
                 try:
-                    self.message.value = e.path if e.path else "Cancelled!"
-                    build_files = os.listdir(self.message.value)
-                    build_files = [f for f in build_files if f.endswith('.html')]
                     # for every file in the folder, do stuff
-                    for i in range(len(build_files)):
-                        db_file = build_files[i]
-                        build, dog_bone_number = db_file.strip('.html').split('_')
-                        dog_bone_number = int(dog_bone_number)
-                        self.dog_bones.controls[i].number.value = dog_bone_number
-                        self.dog_bones.controls[i].file_path.value = build_files[i]
+                    build_number = os.path.basename(os.path.normpath(e.path))
+                    for db in self.dog_bones.controls:
+                        dog_bone_number = db.number.value
+                        self.data_file_path = os.path.join(e.path, build_number+'_'+dog_bone_number+'.html')
+                        assert os.path.exists(self.data_file_path), "Valid path expected"
+                        print('data file path')
+                        print(self.data_file_path)
+                        db.file_path.value = build_number+'_'+dog_bone_number+'.html'
                         self.build_directory = e.path
-                        self.data_file_path = os.path.join(e.path, str(build_files[i]))
-                        
-                        try:
-                            self.dog_bones.controls[i].process_dog_bone(e, self.dog_bones.controls[i].number.value, self.header.material.value, self.data_file_path)
-                        except ValueError:
-                            self.message.bgcolor = ft.colors.AMBER_300
-                            self.message.value = "It looks like some values were left blank"
-                            self.update()
-
-                        self.dog_bones.controls[i].update()
-                    self.message.bgcolor = ft.colors.WHITE
+                        db.process_dog_bone(e, db.number.value, self.header.material.value, self.data_file_path)
+                        self.message.bgcolor = ft.colors.GREEN_300
+                        self.message.value = "Loaded and processed dog bones"
+                        self.update()
+                
+                except AssertionError:
+                    db.file_path.value = ''
+                    self.message.bgcolor = ft.colors.AMBER_300
+                    self.message.value = "Looks like you are missing a dog bone file"
                     self.message.update()
+
+                except ValueError:
+                    self.message.bgcolor = ft.colors.AMBER_300
+                    self.message.value = "It looks like some values were left blank"
                     self.update()
 
                 except IndexError:
