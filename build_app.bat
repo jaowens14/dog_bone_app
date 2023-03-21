@@ -1,1 +1,1 @@
-flet pack dog_bone_app_2.py --add-data "assets;assets" --name "dog_bone_app" --product-name "Dog Bone Data Input App" --product-version "2.0" --copyright "Copyright @ 2023 Avid Product Development LLC. All rights reserved."
+flet pack dog_bone_app_2.py --add-data "assets;assets" --name "dog_bone_app" --product-name "Dog Bone Data Input App" --product-version "2.1" --copyright "Copyright @ 2023 Avid Product Development LLC. All rights reserved."
