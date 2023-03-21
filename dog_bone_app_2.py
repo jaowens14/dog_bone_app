@@ -47,9 +47,9 @@ from pydrive.drive import GoogleDrive
 class Build(ft.UserControl):
     def __init__(self):
         super().__init__()
-        self.number =               ft.TextField(label='Build Number',         value='0000', expand=2, on_blur=self.change_build_number)
-        self.elongation_threshold = ft.TextField(label='Elongation Threshold', value='', expand=1, read_only=True)
-        self.stress_threshold =     ft.TextField(label='Stress Threshold',     value='', expand=1, read_only=True)
+        self.number =               ft.TextField(label='Build Number',         value='0000', expand=4, on_blur=self.change_build_number)
+        self.elongation_threshold = ft.TextField(label='Elongation Threshold', value='', expand=2, read_only=True)
+        self.stress_threshold =     ft.TextField(label='Stress Threshold',     value='', expand=2, read_only=True)
         self.previous_number = '0000'
         
         self.material = ft.Dropdown(
@@ -75,15 +75,12 @@ class Build(ft.UserControl):
                     controls=[
                         self.number,
                         self.material,
-                        #self.elongation_threshold,
-                        #self.stress_threshold,
                     ],
                 ),
             ft.Divider(thickness=5, color=ft.colors.BLUE_GREY)
             ],
         )
         return self.header
-    
 
     def change_build_number(self, e):
         print(self.number.value)
@@ -225,11 +222,29 @@ class DogBoneApp(ft.UserControl):
         self.progress_bar = ft.ProgressBar(visible=False)
         self.t = '' # time stamp
         self.message = ft.TextField(label="Message", value='', read_only=True, expand=2)
-        self.notes   = ft.TextField(label="Notes", value='', expand=1)
+        self.notes   = ft.TextField(label="Notes", value='', expand=3)
 
         self.header = Build()
         self.dog_bones = ft.Column()
         self.get_directory_dialog = ft.FilePicker(on_result=self.get_directory_result)
+
+        self.clear_data_button = ft.FloatingActionButton(text='Clear All Data', expand=1, on_click=self.show_banner, bgcolor=ft.colors.RED_300)
+        self.banner = ft.Banner(
+        open=False,
+        bgcolor=ft.colors.AMBER_100,
+        leading=ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, color=ft.colors.AMBER, size=40),
+        content=ft.Text(
+            "Are you sure you want to clear all data? Please confirm you have saved the build."
+        ),
+        actions=[
+            ft.TextButton("Clear All Data", on_click=self.clear_all_data),
+            ft.TextButton("Cancel", on_click=self.hide_banner),
+        ],
+    )
+
+
+
+
         return ft.Column(
             spacing=10,
             width=1600,
@@ -247,14 +262,37 @@ class DogBoneApp(ft.UserControl):
                 self.progress_bar,
                 ft.Row(
                     controls=[
-                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=1, bgcolor=ft.colors.GREEN_300, on_click=self.save_build),
+                        ft.FloatingActionButton(icon=ft.icons.CREATE, text="Create Build Report", expand=2, bgcolor=ft.colors.GREEN_300, on_click=self.save_build),
                         #ft.FloatingActionButton(icon=ft.icons.CREATE, text="print stuff", expand=1, on_click=self.print_stuff, bgcolor=ft.colors.GREEN_300),
                         self.notes,
+                        self.clear_data_button,
+                        self.banner,
                         self.get_directory_dialog,
                     ],
                 ),
             ],
         )
+
+    def show_banner(self, e):
+        print("show banner")
+        self.banner.open = True
+        self.update()
+    def hide_banner(self, e):
+        print("hide banner")
+        self.banner.open = False
+        self.update()
+
+    def clear_all_data(self, e):
+        self.header.material.value = ''
+        self.header.number.value = '0000'
+        self.dog_bones.controls = []
+        self.banner.open = False
+        self.message.value = ''
+        self.header.update()
+        self.dog_bones.update()
+        self.update()
+        print("clear all data")
+
 
     def print_stuff(self, e):
         self.message.bgcolor = ft.colors.AMBER_300
