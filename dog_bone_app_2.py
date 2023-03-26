@@ -148,7 +148,7 @@ class DogBone(ft.UserControl):
         thickness = self.thickness.value
         cross_sectional_area = float(thickness)*float(width)
         # load the data
-        os.chmod(data_file_path, stat.S_IRWXO)
+        os.chmod(data_file_path, stat.S_IRWXU)
         # open the file
         report = open(data_file_path, 'r')
         # get the data out of the html
