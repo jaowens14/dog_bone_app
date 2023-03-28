@@ -15,32 +15,10 @@ import shutil
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
+from ../components/dog_gone_app import DogBoneApp
 
-# TODO Look up dog bone based on entered number
-# TODO Double STd values
 
-# DONE CHANGE STRESS TO FORCE
-# TODO CHECK UNITS
-# DONE ADD LOADING SCREEEN WHEN UPLOADING
-# DONE FIX COLORS
-# DONE MAKE DIMENSION CHECK FOR OVER AND UNDER SIZE
-# DONE MAKE SCREEN SHOT WORK - takes screen cap of active monitor
 
-# DONE Save Initial files, screenshot, build report to cloud and locally
-# DONE Create build report
-# DONE Process data
-
-# DONE remove review button
-# DONE enforce build number matching
-# DONE Calculating thresholds, average and standard deviations
-# DONE Enforce dog bone number matching
-# DONE make sure color map is working
-# DONE Grade dog bone based on dog bone number
-# DONE Grade Force and Dimension 
-
-# input directory is selected
-# output directory is 
-# cred's directory is 
 
 
 
@@ -482,4 +460,6 @@ def main(page: ft.Page):
     # add application's root control to the page
     page.add(dog_bone_app)
 
-ft.app(target=main,assets_dir="assets")
+if __name__ == "__main__":
+    print("aaa")
+    # ft.app(target=main,assets_dir="assets")

@@ -9,7 +9,6 @@ from flet import (
     icons,
 )
 
-
 def main(page: Page):
     # Pick files dialog
     def pick_files_result(e: FilePickerResultEvent):

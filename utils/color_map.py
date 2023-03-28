@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 import flet as ft
 from lookup_table import lookup
-#  |red------ -2 std---yellow-- -std      average     +std    +2 std
-
 
 def grade_dog_bone(material, dog_bone_number, length, width, thickness, percent_elongation, force):    
     averages = lookup(material, 'AVE', dog_bone_number)
@@ -59,6 +57,9 @@ def color_map(value, ave, std, std2):
         print("value is below 3 std")
         color = ft.colors.RED_300
     return color
+
+if __name_ == "__main__":
+    pass
 
 
 
